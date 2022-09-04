@@ -17,9 +17,9 @@
         "format"
     ],
     "esmcat_version": "0.1.0",
-    "id": "dkrz_cordex_disk",
-    "description": "This is an ESM collection for CORDEX data accessible on the DKRZ's disk storage system  which will be loaded from a source file which is in the cloud (see catalog_file)",
-    "catalog_file": "https://swift.dkrz.de/v1/dkrz_a44962e3ba914c309a7421573a6949a6/intake-esm/dkrz_cordex_disk.csv.gz",
+    "id": "eurocordex_eur11",
+    "description": "This is an ESM collection for EURO-CORDEX data accessible on GitHub LFS. Data has been generated using the DKRZ intake-esm stores. Data is filtered for the EUR-11 CORDEX domain at the daily timescale, the 'historical' (1976-2005) and 'rcp85' (2041-2070) experiments, and the following variables: 'evspsblpot', 'hurs', 'huss', 'mrso', 'pr', 'ps', 'rlds', 'rsds', 'rlus', 'rsus', 'sund', 'tas', 'tasmax', 'tasmin'",
+    "catalog_file": "https://media.githubusercontent.com/media/ClimAg/data/main/eurocordex/eurocordex_eur11_catalogue.csv?token=AHOG4CXFUAWFBZDPQEOBTOTDCUOD6",
     "attributes": [
         {
             "column_name": "project"
