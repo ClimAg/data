@@ -1,3 +1,149 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:29af94b2137681dc76fb1206e958e288863dfc3da4a686a6c9d78e14eaa48a6c
-size 3734
+{
+    "default_columns": [
+        "project",
+        "product_id",
+        "CORDEX_domain",
+        "institute_id",
+        "driving_model_id",
+        "experiment_id",
+        "member",
+        "model_id",
+        "rcm_version_id",
+        "frequency",
+        "variable_id",
+        "version",
+        "time_range",
+        "uri",
+        "format"
+    ],
+    "esmcat_version": "0.1.0",
+    "id": "dkrz_cordex_disk",
+    "description": "This is an ESM collection for CORDEX data accessible on the DKRZ's disk storage system  which will be loaded from a source file which is in the cloud (see catalog_file)",
+    "catalog_file": "https://swift.dkrz.de/v1/dkrz_a44962e3ba914c309a7421573a6949a6/intake-esm/dkrz_cordex_disk.csv.gz",
+    "attributes": [
+        {
+            "column_name": "project"
+        },
+        {
+            "column_name": "CORDEX_domain",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "product_id",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "institute_id",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "driving_model_id",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "experiment_id",
+            "vocabulary": "https://raw.githubusercontent.com/WCRP-CMIP/CMIP6_CVs/master/CMIP6_experiment_id.json"
+        },
+        {
+            "column_name": "member",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "model_id",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "rcm_version_id",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "frequency",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "variable_id",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "version",
+            "vocabulary": ""
+        },
+        {
+            "column_name": "uri"
+        },
+        {
+            "column_name": "time_range"
+        },
+        {
+            "column_name": "institution_id"
+        },
+        {
+            "column_name": "source_id"
+        },
+        {
+            "column_name": "simulation_id"
+        },
+        {
+            "column_name": "realm"
+        },
+        {
+            "column_name": "time_reduction"
+        },
+        {
+            "column_name": "grid_label"
+        },
+        {
+            "column_name": "grid_id"
+        },
+        {
+            "column_name": "level_type"
+        },
+        {
+            "column_name": "time_min"
+        },
+        {
+            "column_name": "time_max"
+        },
+        {
+            "column_name": "format"
+        }
+    ],
+    "assets": {
+        "format_column_name": "format",
+        "column_name": "uri"
+    },
+    "aggregation_control": {
+        "variable_column_name": "variable_id",
+        "groupby_attrs": [
+            "CORDEX_domain",
+            "driving_model_id",
+            "institute_id",
+            "model_id",
+            "experiment_id",
+            "frequency"
+        ],
+        "aggregations": [
+            {
+                "type": "union",
+                "attribute_name": "variable_id"
+            },
+            {
+                "type": "join_existing",
+                "attribute_name": "time_range",
+                "options": {
+                    "dim": "time",
+                    "coords": "minimal",
+                    "compat": "override"
+                }
+            },
+            {
+                "type": "join_new",
+                "attribute_name": "member",
+                "options": {
+                    "coords": "minimal",
+                    "compat": "override"
+                }
+            }
+        ]
+    }
+}
