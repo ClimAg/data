@@ -18,4 +18,10 @@ Generated using the DKRZ intake-esm stores
 
 ### GrassCheck NI
 
+Grass growth measurements for Northern Ireland
+
 Manually extracted from information provided in GrassCheck weekly bulletins: <https://www.agrisearch.org/bulletins>
+
+The grass growth data is aggregated at county level and is measured in kg DM/ha/day.
+
+© 2022 Agrisearch
