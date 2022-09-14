@@ -14,6 +14,14 @@ Generated using the DKRZ intake-esm stores
 - <https://gallery.pangeo.io/repos/pangeo-data/pangeo-tutorial-gallery/intake.html>
 - <https://intake.readthedocs.io/>
 
+To download the data, run the `wget` script using the following [command](https://esgf.github.io/esgf-user-support/faq.html#do-i-need-to-use-my-username-password):
+
+```sh
+eurocordex-wget.sh -H
+```
+
+The data will be downloaded to the working directory.
+
 ## Grass growth data
 
 ### GrassCheck NI

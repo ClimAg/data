@@ -13,12 +13,15 @@ archive/
 *.points
 *.qgz
 *.qml
+*.status
 *.tfw
 *.tif*
 *.txt
 *.xls
 *.xml
 *.zip
+
+wget-*.sh
 
 !eurocordex/eurocordex_eur11_catalogue.csv
 !grasscheck/grasscheck.csv
