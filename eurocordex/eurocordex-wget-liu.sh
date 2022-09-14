@@ -687,11 +687,11 @@ download_http_sec()
 
   #Extract orp service from url ?
   #Evaluate response.
-  #redirects=$(echo "$http_resp" | egrep -c ' 302 ')
+  #redirects=$(echo "$http_resp" | grep -E -c ' 302 ')
   #(( "$redirects" == 1 )) &&
   if  echo "$http_resp" | grep -q "/esg-orp/"
   then
-   urls=$(echo "$http_resp" | egrep -o 'https://[^ ]+' | cut -d'/' -f 3)
+   urls=$(echo "$http_resp" | grep -E -o 'https://[^ ]+' | cut -d'/' -f 3)
    orp_service=$(echo "$urls" | tr '\n' ' ' | cut -d' ' -f 2)
 
 
@@ -724,9 +724,9 @@ download_http_sec_decide_service()
 {
   #find claimed id
 
-  pos=$(echo "$openid_c" | egrep -o '/' | wc -l)
+  pos=$(echo "$openid_c" | grep -E -o '/' | wc -l)
   username_c=$(echo "$openid_c"  | cut -d'/' -f "$(($pos + 1))")
-  esgf_uri=$(echo "$openid_c" | egrep -o '/esgf-idp/openid/')
+  esgf_uri=$(echo "$openid_c" | grep -E -o '/esgf-idp/openid/')
 
   host=$(echo "$openid_c"  | cut -d'/' -f 3)
   #test ceda first.
@@ -842,12 +842,12 @@ download_http_sec_cl_id()
 
   #Extract orp service from openid ?
   #Evaluate response.If redirected to idp service send the credentials.
-  #redirects=$(echo "$http_resp" | egrep -c ' 302 ')
+  #redirects=$(echo "$http_resp" | grep -E -c ' 302 ')
   #(( redirects == 2  )) &&
   if  echo "$http_resp" | grep -q "login.htm"  && (( cmd_exit_status == 0 ))
   then
 
-   urls=$(echo "$http_resp" | egrep -o 'https://[^ ]+' | cut -d'/' -f 3)
+   urls=$(echo "$http_resp" | grep -E -o 'https://[^ ]+' | cut -d'/' -f 3)
    idp_service=$(echo "$urls"  | tr '\n' ' ' | cut -d' ' -f 2)
 
    command="wget --post-data  password=\"$password_c\" $wget_args ${quiet:+-q} ${quiet:--v} -O $filename https://$idp_service/esgf-idp/idp/login.htm"
@@ -870,7 +870,7 @@ download_http_sec_cl_id()
    fi
 
    #Evaluate response.
-   #redirects=$(echo "$http_resp" | egrep -c ' 302 ')
+   #redirects=$(echo "$http_resp" | grep -E -c ' 302 ')
    #(( "$redirects" != 5 )) \
    if    echo "$http_resp" | grep -q "text/html"  \
       || echo "$http_resp" | grep -q "403: Forbidden"  \
@@ -912,7 +912,7 @@ download_http_sec_open_id()
   fi
 
   #Evaluate response.
-  #redirects=$(echo "$http_resp" | egrep -c ' 302 ')
+  #redirects=$(echo "$http_resp" | grep -E -c ' 302 ')
   #(( "$redirects" != 7 )) ||
   if   echo "$http_resp" | grep -q "text/html"  ||  (( $cmd_exit_status != 0 ))
   then

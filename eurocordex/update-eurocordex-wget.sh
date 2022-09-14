@@ -19,6 +19,9 @@ NR==5{ print "\
 ' data/eurocordex/eurocordex-wget-ceda.sh > temp.sh
 mv temp.sh data/eurocordex/eurocordex-wget-ceda.sh
 
+# replace egrep with grep -E
+sed -i 's/egrep/grep -E/g' data/eurocordex/eurocordex-wget-ceda.sh
+
 ###########################################################################
 
 awk '
@@ -36,3 +39,6 @@ NR==5{ print "\
 \n#" }1
 ' data/eurocordex/eurocordex-wget-liu.sh > temp.sh
 mv temp.sh data/eurocordex/eurocordex-wget-liu.sh
+
+# replace egrep with grep -E
+sed -i 's/egrep/grep -E/g' data/eurocordex/eurocordex-wget-liu.sh
