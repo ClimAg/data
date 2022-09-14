@@ -23,6 +23,7 @@ archive/
 
 wget-*.sh
 
+!LICENCE.txt
 !eurocordex/eurocordex_eur11_catalogue.csv
 !grasscheck/grasscheck.csv
 !climatic-regions/holden-brereton-2004/holden_brereton_2004_regions.png
