@@ -21,3 +21,4 @@ archive/
 *.zip
 
 !eurocordex/eurocordex_eur11_catalogue.csv
+!grasscheck/grasscheck.csv
