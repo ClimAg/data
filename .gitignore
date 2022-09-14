@@ -1,4 +1,5 @@
 archive/
+raw/
 
 *.csv
 *.doc
@@ -16,14 +17,13 @@ archive/
 *.status
 *.tfw
 *.tif*
-*.txt
 *.xls
 *.xml
 *.zip
 
 wget-*.sh
 
-!LICENCE.txt
+!wget-esg*.sh
 !eurocordex/eurocordex_eur11_catalogue.csv
 !grasscheck/grasscheck.csv
 !climatic-regions/holden-brereton-2004/holden_brereton_2004_regions.png
