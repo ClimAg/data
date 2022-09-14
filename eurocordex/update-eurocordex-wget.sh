@@ -1,15 +1,18 @@
 #!/bin/bash
 #
 # update ESGF Wget scripts
-# remove data files that do not correspond to the study time range
-# i.e. outside 1976-2005 and 2041-2070
-# replace egrep with grep -E
-# add some notes about the modifications
+# - remove data files that do not correspond to the study time range
+#   i.e. outside 1976-2005 and 2041-2070
+# - replace egrep with grep -E
+# - add some notes about the modifications
+# this script assumes that the original Wget scripts downloaded from the
+# ESGF portal is located in data/eurocordex/ and the script is run with the
+# project root as the working directory
 
 for node in esgf.ceda.ac.uk esg-dn1.nsc.liu.se;
-do for filename in $(grep -l $node data/eurocordex/wget-*.sh);
-do rm -f -- data/eurocordex/wget-$node.sh &&
-awk '
+do rm -f -- data/eurocordex/wget-$node.sh
+for filename in $(grep -l $node data/eurocordex/wget-*.sh);
+do awk '
 !/19511201/ && !/19560101/ && !/19610101/ && !/19660101/ && !/19700101/ &&
 !/19710101/ &&
 !/20060101/ && !/20110101/ && !/20160101/ && !/20210101/ && !/20260101/ &&
