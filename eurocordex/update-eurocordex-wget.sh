@@ -6,7 +6,7 @@
 # - replace egrep with grep -E
 # - add some notes about the modifications
 # this script assumes that the original Wget scripts downloaded from the
-# ESGF portal is in the working directory
+# ESGF portal are in the working directory
 
 for node in esgf.ceda.ac.uk esg-dn1.nsc.liu.se;
 do rm -f -- wget-${node}.sh

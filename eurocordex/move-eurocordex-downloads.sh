@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# create subdirectories to store the downloaded EURO-CORDEX data
+# move the downloaded EURO-CORDEX data into subdirectories
 
 for experiment in historical rcp85;
 do for institute in MOHC SMHI;
