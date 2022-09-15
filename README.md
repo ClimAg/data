@@ -17,19 +17,25 @@ Data specifications:
 
 [ESGF](https://esgf.llnl.gov) nodes and models (GCM - global/driving model; RCM - regional climate model):
 
-Node | GCM | RCM | Version
+Node | GCM | RCM | Downscaling realisation
 -- | -- | -- | --
 [CEDA](https://www.ceda.ac.uk/) | CNRM-CERFACS-CNRM-CM5 | HadREM3-GA7-05 | v2
 [NSC LIU](https://nsc.liu.se/) | MPI-M-MPI-ESM-LR | SMHI-RCA4 | v1a
 
-To automate the download of this data, run the [Wget](https://www.gnu.org/software/wget/) script(s):
+To automate downloading this data, run the [Wget](https://www.gnu.org/software/wget/) script(s):
 
 ```sh
 ./wget-esgf.ceda.ac.uk.sh  # CEDA ESGF node
 ./wget-esg-dn1.nsc.liu.se.sh  # NSC LIU ESGF node
 ```
 
-The data will be downloaded to the working directory. ESGF login credentials will be requested once the script is run. See the [ESGF Wget documentation](https://esgf.github.io/esgf-user-support/faq.html#esgf-wget) for more information. If there is a username/password authentication failure, ensure the ESGF user account being used has joined the CORDEX research group.
+The data will be downloaded to the working directory. To move the files into subdirectories:
+
+```sh
+./move-eurocordex-downloads.sh
+```
+
+ESGF login credentials will be requested once the script is run. See the [ESGF Wget documentation](https://esgf.github.io/esgf-user-support/faq.html#esgf-wget) for more information. If there is a username/password authentication failure, ensure the ESGF user account being used has joined the CORDEX research group.
 
 Links:
 
