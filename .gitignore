@@ -1,7 +1,9 @@
 archive/
 raw/
 
+*.cpg
 *.csv
+*.dbf
 *.doc
 *.geojson
 *.gpkg
@@ -12,8 +14,13 @@ raw/
 *.pdf
 *.png
 *.points
+*.prj
 *.qgz
 *.qml
+*.sbn
+*.sbx
+*.shp
+*.shx
 *.status
 *.tfw
 *.tif*

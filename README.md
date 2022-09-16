@@ -61,13 +61,13 @@ The grass growth data is aggregated at county level and is measured in kg DM/ha/
 
 ## Climatic regions
 
-### Holden and Brereton (2004)
+### Agro-environmental regions in Holden and Brereton (2004)
 
 Six agroclimatic regions have been derived from the map available in the following paper:
 
 Holden, N. M. and Brereton, A. J. (2004). 'Definition of agroclimatic regions in Ireland using hydro-thermal and crop yield data', *Agricultural and Forest Meteorology*, vol. 122, no. 3, pp. 175–191. DOI: [10.1016/j.agrformet.2003.09.010](https://doi.org/10.1016/j.agrformet.2003.09.010).
 
-A screenshot of the map was taken (`climatic-regions/holden-brereton-2004/holden_brereton_2004_regions.png`), then georeferenced in [QGIS](https://www.qgis.org/)/[GDAL](https://gdal.org/) using the steps detailed in `climatic-regions/holden-brereton-2004/holden_brereton_2004_regions.sh`.
+A screenshot of the map was taken, then georeferenced in [QGIS](https://www.qgis.org/)/[GDAL](https://gdal.org/) using the steps detailed in `holden_brereton_2004_regions.sh`.
 
 ## Licence
 
