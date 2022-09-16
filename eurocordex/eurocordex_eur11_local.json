@@ -18,7 +18,7 @@
     ],
     "esmcat_version": "0.1.0",
     "id": "eurocordex_eur11",
-    "description": "This is an ESM collection for EURO-CORDEX data accessible on GitHub LFS. Data has been generated using the DKRZ intake-esm stores. Data is filtered for the EUR-11 CORDEX domain at the daily timescale, the 'historical' (1976-2005) and 'rcp85' (2041-2070) experiments, and the following variables: evspsblpot, mrso, pr, rlds, rlus, rsds, rsus, sund, tas, tasmax, tasmin",
+    "description": "This is an ESM collection for EURO-CORDEX data used in the ClimAg project. Data has been generated using the DKRZ intake-esm stores. Data is filtered for the EUR-11 CORDEX domain at the daily timescale, the 'historical' (1976-2005) and 'rcp85' (2041-2070) experiments, and the following variables: evspsblpot, mrso, pr, rlds, rlus, rsds, rsus, sund, tas, tasmax, tasmin",
     "catalog_file": "https://raw.githubusercontent.com/ClimAg/data/main/eurocordex/eurocordex_eur11_catalogue.csv",
     "attributes": [
         {
