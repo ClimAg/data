@@ -1,6 +1,8 @@
 archive/
 raw/
 
+*.*-shm
+*.*-wal
 *.cpg
 *.csv
 *.dbf
