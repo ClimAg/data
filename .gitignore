@@ -7,6 +7,7 @@ raw/
 *.csv
 *.dbf
 *.doc
+*.fuse_*
 *.geojson
 *.gpkg
 *.gz
@@ -37,3 +38,4 @@ dkrz_cordex_disk.json
 !eurocordex/eurocordex_eur11_catalogue.csv
 !grasscheck.csv
 !holden_brereton_2004_regions.png
+!regions-polygons.gpkg
