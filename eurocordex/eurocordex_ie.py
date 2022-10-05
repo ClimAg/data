@@ -13,10 +13,6 @@ DATA_DIR_BASE = os.path.join("data", "eurocordex")
 DATA_DIR = os.path.join(DATA_DIR_BASE, "IE")
 os.makedirs(DATA_DIR, exist_ok=True)
 
-# Cork Airport met station coords
-LON = -8.48611
-LAT = 51.84722
-
 # Ireland boundary
 GPKG_BOUNDARY = os.path.join("data", "boundary", "boundaries.gpkg")
 ie = gpd.read_file(GPKG_BOUNDARY, layer="OS_IE_Ireland_ITM")
@@ -28,12 +24,12 @@ JSON_FILE_PATH = os.path.join(
 
 cordex_eur11_cat = intake.open_esm_datastore(JSON_FILE_PATH)
 
-# precipitation
+# rcp85
 
 # filter data subset
 cordex_eur11 = cordex_eur11_cat.search(
     experiment_id="rcp85",
-    variable_id="pr",
+    variable_id=["pr", "tas", "evspsblpot"],
     institute_id="SMHI"
 )
 
@@ -46,51 +42,16 @@ data = xr.open_mfdataset(
 # clip to Ireland's bounding box with a 10 km buffer
 data = data.rio.clip(ie.envelope.buffer(10000).to_crs(data.rio.crs))
 
-# export to NetCDF
-FILE_NAME = cplt.ie_ncfile_name(data)
-
-data.to_netcdf(os.path.join(DATA_DIR, FILE_NAME))
-
-# evapotranspiration
-
-# filter data subset
-cordex_eur11 = cordex_eur11_cat.search(
-    experiment_id="rcp85",
-    variable_id="evspsblpot",
-    institute_id="SMHI"
-)
-
-data = xr.open_mfdataset(
-    list(cordex_eur11.df["uri"]),
-    chunks="auto",
-    decode_coords="all"
-)
-
-# clip to Ireland's bounding box with a 10 km buffer
-data = data.rio.clip(ie.envelope.buffer(10000).to_crs(data.rio.crs))
-
-# export to NetCDF
-FILE_NAME = cplt.ie_ncfile_name(data)
-
-data.to_netcdf(os.path.join(DATA_DIR, FILE_NAME))
-
-# temperature
-
-# filter data subset
-cordex_eur11 = cordex_eur11_cat.search(
-    experiment_id="rcp85",
-    variable_id="tas",
-    institute_id="SMHI"
-)
-
-data = xr.open_mfdataset(
-    list(cordex_eur11.df["uri"]),
-    chunks="auto",
-    decode_coords="all"
-)
-
-# clip to Ireland's bounding box with a 10 km buffer
-data = data.rio.clip(ie.envelope.buffer(10000).to_crs(data.rio.crs))
+# convert units
+for v in data.data_vars:
+    var_attrs = data[v].attrs  # extract attributes
+    if v == "tas":
+        var_attrs["units"] = "°C"  # convert K to deg C
+        data[v] = data[v] - 273.15
+    else:
+        var_attrs["units"] = "mm/day"  # convert kg m-2 s-1 to mm/day
+        data[v] = data[v] * 60 * 60 * 24
+    data[v].attrs = var_attrs  # reassign attributes
 
 # export to NetCDF
 FILE_NAME = cplt.ie_ncfile_name(data)
