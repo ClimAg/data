@@ -1,4 +1,7 @@
-# Subset EURO-CORDEX data for Ireland
+"""eurocordex_ie.py
+
+Subset EURO-CORDEX data for Ireland
+"""
 
 # import libraries
 import os
@@ -24,36 +27,35 @@ JSON_FILE_PATH = os.path.join(
 
 cordex_eur11_cat = intake.open_esm_datastore(JSON_FILE_PATH)
 
-# rcp85
+# subset data for each experiment
+for experiment in ["rcp85", "historical"]:
+    cordex_eur11 = cordex_eur11_cat.search(
+        experiment_id=experiment,
+        variable_id=["pr", "tas", "evspsblpot"],
+        institute_id="SMHI"
+    )
 
-# filter data subset
-cordex_eur11 = cordex_eur11_cat.search(
-    experiment_id="rcp85",
-    variable_id=["pr", "tas", "evspsblpot"],
-    institute_id="SMHI"
-)
+    data = xr.open_mfdataset(
+        list(cordex_eur11.df["uri"]),
+        chunks="auto",
+        decode_coords="all"
+    )
 
-data = xr.open_mfdataset(
-    list(cordex_eur11.df["uri"]),
-    chunks="auto",
-    decode_coords="all"
-)
+    # clip to Ireland's bounding box with a 10 km buffer
+    data = data.rio.clip(ie.envelope.buffer(10000).to_crs(data.rio.crs))
 
-# clip to Ireland's bounding box with a 10 km buffer
-data = data.rio.clip(ie.envelope.buffer(10000).to_crs(data.rio.crs))
+    # convert units
+    for v in data.data_vars:
+        var_attrs = data[v].attrs  # extract attributes
+        if v == "tas":
+            var_attrs["units"] = "°C"  # convert K to deg C
+            data[v] = data[v] - 273.15
+        else:
+            var_attrs["units"] = "mm/day"  # convert kg m-2 s-1 to mm/day
+            data[v] = data[v] * 60 * 60 * 24
+        data[v].attrs = var_attrs  # reassign attributes
 
-# convert units
-for v in data.data_vars:
-    var_attrs = data[v].attrs  # extract attributes
-    if v == "tas":
-        var_attrs["units"] = "°C"  # convert K to deg C
-        data[v] = data[v] - 273.15
-    else:
-        var_attrs["units"] = "mm/day"  # convert kg m-2 s-1 to mm/day
-        data[v] = data[v] * 60 * 60 * 24
-    data[v].attrs = var_attrs  # reassign attributes
+    # export to NetCDF
+    FILE_NAME = cplt.ie_ncfile_name(data)
 
-# export to NetCDF
-FILE_NAME = cplt.ie_ncfile_name(data)
-
-data.to_netcdf(os.path.join(DATA_DIR, FILE_NAME))
+    data.to_netcdf(os.path.join(DATA_DIR, FILE_NAME))
