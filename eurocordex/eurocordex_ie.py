@@ -18,7 +18,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 
 # Ireland boundary
 GPKG_BOUNDARY = os.path.join("data", "boundary", "boundaries.gpkg")
-ie = gpd.read_file(GPKG_BOUNDARY, layer="OS_IE_Ireland_ITM")
+ie = gpd.read_file(GPKG_BOUNDARY, layer="NUTS_Ireland_ITM")
 
 # reading the local catalogue
 JSON_FILE_PATH = os.path.join(
@@ -41,8 +41,8 @@ for experiment in ["rcp85", "historical"]:
         decode_coords="all"
     )
 
-    # clip to Ireland's bounding box with a 10 km buffer
-    data = data.rio.clip(ie.envelope.buffer(10000).to_crs(data.rio.crs))
+    # clip to Ireland's boundary with a 10 km buffer
+    data = data.rio.clip(ie.buffer(10000).to_crs(data.rio.crs))
 
     # convert units
     for v in data.data_vars:
@@ -56,6 +56,6 @@ for experiment in ["rcp85", "historical"]:
         data[v].attrs = var_attrs  # reassign attributes
 
     # export to NetCDF
-    FILE_NAME = cplt.ie_ncfile_name(data)
+    FILE_NAME = cplt.ie_cordex_ncfile_name(data)
 
     data.to_netcdf(os.path.join(DATA_DIR, FILE_NAME))
