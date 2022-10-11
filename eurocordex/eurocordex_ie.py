@@ -1,10 +1,11 @@
 """eurocordex_ie.py
 
-Subset EURO-CORDEX data for Ireland
+Subset EURO-CORDEX data for the Island of Ireland
 """
 
 # import libraries
 import os
+from datetime import datetime, timezone
 import geopandas as gpd
 import intake
 import xarray as xr
@@ -31,7 +32,7 @@ cordex_eur11_cat = intake.open_esm_datastore(JSON_FILE_PATH)
 for experiment in ["rcp85", "historical"]:
     cordex_eur11 = cordex_eur11_cat.search(
         experiment_id=experiment,
-        variable_id=["pr", "tas", "evspsblpot"],
+        variable_id=["pr", "tas", "evspsblpot", "rsds", "rsus"],
         institute_id="SMHI"
     )
 
@@ -44,16 +45,28 @@ for experiment in ["rcp85", "historical"]:
     # clip to Ireland's boundary with a 10 km buffer
     data = data.rio.clip(ie.buffer(10000).to_crs(data.rio.crs))
 
-    # convert units
     for v in data.data_vars:
         var_attrs = data[v].attrs  # extract attributes
         if v == "tas":
             var_attrs["units"] = "°C"  # convert K to deg C
             data[v] = data[v] - 273.15
+        elif v in ("rsds", "rsus"):
+            # convert W m-2 to MJ m-2 day-1
+            # from Allen (1998) - FAO Irrigation and Drainage Paper No. 56
+            # (p. 45)
+            var_attrs["units"] = "MJ m⁻² day⁻¹"
+            data[v] = data[v] * 0.0864
         else:
-            var_attrs["units"] = "mm/day"  # convert kg m-2 s-1 to mm/day
-            data[v] = data[v] * 60 * 60 * 24
+            var_attrs["units"] = "mm day⁻¹"  # convert kg m-2 s-1 to mm day-1
+            data[v] = data[v] * 60 * 60 * 24  # (per second to per day)
         data[v].attrs = var_attrs  # reassign attributes
+
+    # assign attributes for the data
+    data.attrs["comment"] = (
+        "This data has been clipped with the Island of Ireland's boundary. "
+        "Last updated: " + str(datetime.now(tz=timezone.utc)) +
+        " by nstreethran@ucc.ie."
+    )
 
     # export to NetCDF
     FILE_NAME = cplt.ie_cordex_ncfile_name(data)
