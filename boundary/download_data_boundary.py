@@ -73,6 +73,9 @@ osni = gpd.read_file(
     "County_Boundaries_.shp"
 )
 
+# rename Londonderry to Derry
+osni.replace("LONDONDERRY", "DERRY", inplace=True)
+
 osni.to_file(GPKG_BOUNDARY, layer="OSNI_Counties")
 
 ######################################################################
@@ -90,7 +93,7 @@ contae = {
     "ARMAGH": "Ard Mhacha",
     "DOWN": "An Dún",
     "FERMANAGH": "Fear Manach",
-    "LONDONDERRY": "Doire",
+    "DERRY": "Doire",
     "TYRONE": "Tír Eoghain"
 }
 

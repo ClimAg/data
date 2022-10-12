@@ -32,7 +32,7 @@ cordex_eur11_cat = intake.open_esm_datastore(JSON_FILE_PATH)
 for experiment in ["rcp85", "historical"]:
     cordex_eur11 = cordex_eur11_cat.search(
         experiment_id=experiment,
-        variable_id=["pr", "tas", "evspsblpot", "rsds", "rsus"],
+        variable_id=["pr", "tas", "evspsblpot", "rsds"],
         institute_id="SMHI"
     )
 
@@ -50,12 +50,12 @@ for experiment in ["rcp85", "historical"]:
         if v == "tas":
             var_attrs["units"] = "°C"  # convert K to deg C
             data[v] = data[v] - 273.15
-        elif v in ("rsds", "rsus"):
+        elif v == "rsds":
             # convert W m-2 to MJ m-2 day-1
-            # from Allen (1998) - FAO Irrigation and Drainage Paper No. 56
-            # (p. 45)
+            # Allen (1998) - FAO Irrigation and Drainage Paper No. 56 (p. 45)
+            # (per second to per day; then convert to mega)
             var_attrs["units"] = "MJ m⁻² day⁻¹"
-            data[v] = data[v] * 0.0864
+            data[v] = data[v] * (60 * 60 * 24 / 1e6)
         else:
             var_attrs["units"] = "mm day⁻¹"  # convert kg m-2 s-1 to mm day-1
             data[v] = data[v] * 60 * 60 * 24  # (per second to per day)
