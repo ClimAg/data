@@ -13,20 +13,25 @@ Data specifications:
 - Time frequency: day
 - Ensemble: r1i1p1
 - Domain: EUR-11
-- [Variables](https://www.wdc-climate.de/ui/codes?type=IPCC_DDC_AR5): evspsblpot, mrso, pr, rlds, rlus, rsds, rsus, sund, tas, tasmax, tasmin
-
-[ESGF](https://esgf.llnl.gov) nodes and models (GCM - global/driving model; RCM - regional climate model):
+- [Variables](https://www.wdc-climate.de/ui/codes?type=IPCC_DDC_AR5): evspsblpot, mrso, pr, rsds, tas
+- [ESGF](https://esgf.llnl.gov) node: [NSC LIU](https://nsc.liu.se/)
+- Driving models:
+  - MPI-M-MPI-ESM-LR
+  - CNRM-CERFACS-CNRM-CM5
+  - IPSL-IPSL-CM5A-MR
+  - MOHC-HadGEM2-ES
+  - ICHEC-EC-EARTH
+  - NCC-NorESM1-M
+- RCM: RCA4
 
 Node | GCM | RCM | Downscaling realisation
 -- | -- | -- | --
-[CEDA](https://www.ceda.ac.uk/) | CNRM-CERFACS-CNRM-CM5 | HadREM3-GA7-05 | v2
 [NSC LIU](https://nsc.liu.se/) | MPI-M-MPI-ESM-LR | SMHI-RCA4 | v1a
 
-To automate downloading this data, run the [Wget](https://www.gnu.org/software/wget/) script(s):
+To automate downloading these data, run the [Wget](https://www.gnu.org/software/wget/) script(s):
 
 ```sh
-./wget-esgf.ceda.ac.uk.sh  # CEDA ESGF node
-./wget-esg-dn1.nsc.liu.se.sh  # NSC LIU ESGF node
+./wget-esg-dn1.nsc.liu.se.sh
 ```
 
 The data will be downloaded to the working directory. To move the files into subdirectories:

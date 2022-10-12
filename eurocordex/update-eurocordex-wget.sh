@@ -8,7 +8,8 @@
 # this script assumes that the original Wget scripts downloaded from the
 # ESGF portal are in the working directory
 
-for node in esgf.ceda.ac.uk esg-dn1.nsc.liu.se;
+# for node in esgf.ceda.ac.uk esg-dn1.nsc.liu.se;
+for node in esg-dn1.nsc.liu.se;
 do rm -f -- wget-${node}.sh
 for filename in $(grep -l ${node} wget-*.sh);
 do awk '
