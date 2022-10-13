@@ -31,9 +31,10 @@ cordex_eur11_cat = intake.open_esm_datastore(JSON_FILE_PATH)
 # subset data for each experiment
 for experiment in ["rcp85", "historical"]:
     cordex_eur11 = cordex_eur11_cat.search(
-        experiment_id=experiment,
+        experiment_id="rcp85",
         variable_id=["pr", "tas", "evspsblpot", "rsds"],
-        institute_id="SMHI"
+        driving_model_id="MPI-M-MPI-ESM-LR",
+        rcm_version_id="v1a"
     )
 
     data = xr.open_mfdataset(
@@ -42,8 +43,10 @@ for experiment in ["rcp85", "historical"]:
         decode_coords="all"
     )
 
-    # clip to Ireland's boundary with a 10 km buffer
-    data = data.rio.clip(ie.buffer(10000).to_crs(data.rio.crs))
+    data_crs = data.rio.crs
+
+    # clip to Ireland's boundary
+    data = data.rio.clip(ie.buffer(500).to_crs(data.rio.crs))
 
     for v in data.data_vars:
         var_attrs = data[v].attrs  # extract attributes
@@ -63,10 +66,12 @@ for experiment in ["rcp85", "historical"]:
 
     # assign attributes for the data
     data.attrs["comment"] = (
-        "This data has been clipped with the Island of Ireland's boundary. "
+        "This dataset has been clipped with the Island of Ireland's boundary. "
         "Last updated: " + str(datetime.now(tz=timezone.utc)) +
         " by nstreethran@ucc.ie."
     )
+
+    data.rio.write_crs(data_crs, inplace=True)
 
     # export to NetCDF
     FILE_NAME = cplt.ie_cordex_ncfile_name(data)
