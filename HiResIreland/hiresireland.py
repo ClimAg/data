@@ -79,5 +79,6 @@ for experiment in ["rcp85", "historical"]:
     data.to_netcdf(os.path.join(
         DATA_DIR_BASE,
         experiment,
-        "_".join(list(data.data_vars)) + "_" + data.attrs["title"] + ".nc"
+        "_".join(sorted(list(data.data_vars))) + "_" +
+        data.attrs["title"] + ".nc"
     ))
