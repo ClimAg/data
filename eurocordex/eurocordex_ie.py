@@ -33,8 +33,7 @@ for experiment in ["rcp85", "historical"]:
     cordex_eur11 = cordex_eur11_cat.search(
         experiment_id="rcp85",
         variable_id=["pr", "tas", "evspsblpot", "rsds"],
-        driving_model_id="MPI-M-MPI-ESM-LR",
-        rcm_version_id="v1a"
+        driving_model_id="MPI-M-MPI-ESM-LR"
     )
 
     data = xr.open_mfdataset(
@@ -66,8 +65,8 @@ for experiment in ["rcp85", "historical"]:
 
     # assign attributes for the data
     data.attrs["comment"] = (
-        "This dataset has been clipped with the Island of Ireland's boundary. "
-        "Last updated: " + str(datetime.now(tz=timezone.utc)) +
+        "This dataset has been clipped with the Island of Ireland's boundary."
+        " Last updated: " + str(datetime.now(tz=timezone.utc)) +
         " by nstreethran@ucc.ie."
     )
 
