@@ -42,10 +42,17 @@ for experiment in ["rcp85", "historical"]:
         decode_coords="all"
     )
 
+    # copy time_bnds coordinates
+    data_time_bnds = data.coords["time_bnds"]
+
+    # copy CRS
     data_crs = data.rio.crs
 
     # clip to Ireland's boundary
     data = data.rio.clip(ie.buffer(500).to_crs(data.rio.crs))
+
+    # reassign time_bnds
+    data.coords["time_bnds"] = data_time_bnds
 
     for v in data.data_vars:
         var_attrs = data[v].attrs  # extract attributes
