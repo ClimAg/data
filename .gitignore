@@ -34,6 +34,7 @@ raw/
 
 wget-*.sh
 dkrz_cordex_disk.json
+soil/*.json
 
 !wget-esg*.sh
 !eurocordex/eurocordex_eur11_catalogue.csv
