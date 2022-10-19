@@ -1319,7 +1319,7 @@ EOF
 
 
 cat <<'EOF-MESSAGE'
-Script created for 920 file(s)
+Script created for 360 file(s)
 (The count won't match if you manually edit this file!)
 
 

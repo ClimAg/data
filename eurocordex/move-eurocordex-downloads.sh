@@ -2,8 +2,7 @@
 #
 # move the downloaded EURO-CORDEX data into subdirectories
 
-for experiment in historical rcp85;
-# do for institute in MOHC SMHI;
+for experiment in historical rcp45 rcp85;
 do for institute in SMHI;
 do for variable in evspsblpot mrso pr rsds tas;
 do mkdir -p ${institute}/${experiment}/${variable}

@@ -27,19 +27,16 @@ Generated using the [DKRZ] intake-esm stores
 Data specifications:
 
 - Project: CORDEX
-- Experiments: historical, rcp85
+- Experiments: historical, rcp45, rcp85
 - Time frequency: day
-- Ensemble: r1i1p1
 - Domain: EUR-11 (12.5 km)
 - [Variables]: evspsblpot, mrso, pr, rsds, tas
 - [ESGF] node: [NSC LIU](https://nsc.liu.se/)
-- Driving models:
-  - MPI-M-MPI-ESM-LR
-  - CNRM-CERFACS-CNRM-CM5
-  - IPSL-IPSL-CM5A-MR
-  - MOHC-HadGEM2-ES
-  - ICHEC-EC-EARTH
-  - NCC-NorESM1-M
+- Driving models (and ensemble):
+  - MPI-M-MPI-ESM-LR (r1i1p1)
+  - CNRM-CERFACS-CNRM-CM5 (r1i1p1)
+  - MOHC-HadGEM2-ES (r1i1p1)
+  - ICHEC-EC-EARTH (r12i1p1)
 - RCM: RCA4
 
 To automate downloading these data, run the [Wget] script(s):
