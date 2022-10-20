@@ -107,6 +107,11 @@ Hanrahan, L., Geoghegan, A., O'Donovan, M., Griffith, V., Ruelle, E., Wallace, M
 *Computers and Electronics in Agriculture*, vol. 136, pp. 193–201.
 DOI: [10.1016/j.compag.2017.01.029][Hanrahan].
 
+### Grass10
+
+Data taken from Teagasc Grass10 newsletters:
+<https://www.teagasc.ie/crops/grassland/grass10/>
+
 ## Climatic regions
 
 ### Agro-environmental regions in Holden and Brereton (2004)

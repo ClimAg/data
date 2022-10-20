@@ -42,3 +42,4 @@ soil/*.json
 !holden_brereton_2004_regions.png
 !regions-polygons.gpkg
 !grass-growth/modvege/params.csv
+!grass10.csv
