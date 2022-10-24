@@ -4,6 +4,7 @@ Subset EURO-CORDEX data for the Island of Ireland
 """
 
 # import libraries
+import itertools
 import os
 from datetime import datetime, timezone
 import geopandas as gpd
@@ -28,12 +29,20 @@ JSON_FILE_PATH = os.path.join(
 
 cordex_eur11_cat = intake.open_esm_datastore(JSON_FILE_PATH)
 
-# subset data for each experiment
-for experiment in ["rcp85", "historical"]:
+# subset data for each experiment and driving model
+driving_model_id = [
+    "CNRM-CERFACS-CNRM-CM5",
+    "ICHEC-EC-EARTH",
+    "MPI-M-MPI-ESM-LR",
+    "MOHC-HadGEM2-ES"
+]
+
+experiment = ["rcp85", "rcp45", "historical"]
+
+for exp, model in itertools.product(experiment, driving_model_id):
     cordex_eur11 = cordex_eur11_cat.search(
-        experiment_id="rcp85",
-        variable_id=["pr", "tas", "evspsblpot", "rsds"],
-        driving_model_id="MPI-M-MPI-ESM-LR"
+        experiment_id=exp,
+        driving_model_id=model
     )
 
     data = xr.open_mfdataset(
@@ -65,7 +74,9 @@ for experiment in ["rcp85", "historical"]:
             # (per second to per day; then convert to mega)
             var_attrs["units"] = "MJ m⁻² day⁻¹"
             data[v] = data[v] * (60 * 60 * 24 / 1e6)
-        else:
+        elif v == "mrso":
+            var_attrs["units"] = "mm day⁻¹"  # kg m-2 is the same as mm day-1
+        elif v in ("pr", "evspsblpot"):
             var_attrs["units"] = "mm day⁻¹"  # convert kg m-2 s-1 to mm day-1
             data[v] = data[v] * 60 * 60 * 24  # (per second to per day)
         data[v].attrs = var_attrs  # reassign attributes
