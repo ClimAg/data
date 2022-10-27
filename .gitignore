@@ -10,7 +10,7 @@ raw/
 *.doc
 *.fuse_*
 *.geojson
-*.gpkg
+*.gpkg*
 *.gz
 *.html
 *.nc

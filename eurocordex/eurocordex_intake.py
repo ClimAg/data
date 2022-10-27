@@ -38,7 +38,7 @@ timerange = [
 # add additional time ranges for the MOHC datasets
 timerange = timerange + [t.replace("1231", "1230") for t in timerange]
 
-variables = ["evspsblpot", "mrso", "pr", "rsds", "tas"]
+variables = ["evspsblpot", "mrso", "pr", "rsds", "rsus", "tas"]
 
 driving_model_id = [
     "CNRM-CERFACS-CNRM-CM5",

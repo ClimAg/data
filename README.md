@@ -27,10 +27,12 @@ Generated using the [DKRZ] intake-esm stores
 Data specifications:
 
 - Project: CORDEX
-- Experiments: historical, rcp45, rcp85
-- Time frequency: day
+- Experiments:
+  - historical (1976-2005)
+  - rcp45, rcp85 (2041-2070)
+- Frequency: day
 - Domain: EUR-11 (12.5 km)
-- [Variables]: evspsblpot, mrso, pr, rsds, tas
+- [Variables]: evspsblpot, mrso, pr, rsds, rsus, tas
 - [ESGF] node: [NSC LIU](https://nsc.liu.se/)
 - Driving models (and ensemble):
   - MPI-M-MPI-ESM-LR (r1i1p1)
@@ -71,6 +73,20 @@ DOI: [10.1007/s10113-013-0499-2][Jacob].
 
 ### HiResIreland
 
+Data specifications:
+
+- Experiments:
+  - historical (1976-2005)
+  - rcp45, rcp85 (2041-2070)
+- Frequency: day
+- [Variables]: evspsblpot, mrso, pr, tas, par
+- Driving models (and ensemble):
+  - MPI-M-MPI-ESM-LR (r1i1p1)
+  - CNRM-CERFACS-CNRM-CM5 (r1i1p1)
+  - MOHC-HadGEM2-ES (r1i1p1)
+  - ICHEC-EC-EARTH (r12i1p1)
+- RCM: COSMO5-CLM
+
 Nolan, P. and Flanagan, J. (2020).
 High-resolution Climate Projections for Ireland - A Multi-model Ensemble Approach (2014-CCRP-MS.23),
 EPA Research Programme 2014-2020, EPA Research Report,
@@ -87,7 +103,7 @@ Manually extracted from information provided in GrassCheck weekly bulletins:
 <https://www.agrisearch.org/bulletins>
 
 The grass growth data is aggregated at county level and is measured in kg DM ha⁻¹ day⁻¹.
-Timestep is weekly.
+Frequency is weekly.
 
 © 2017-2022 Agrisearch
 

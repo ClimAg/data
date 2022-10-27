@@ -30,16 +30,11 @@ JSON_FILE_PATH = os.path.join(
 cordex_eur11_cat = intake.open_esm_datastore(JSON_FILE_PATH)
 
 # subset data for each experiment and driving model
-driving_model_id = [
-    "CNRM-CERFACS-CNRM-CM5",
-    "ICHEC-EC-EARTH",
-    "MPI-M-MPI-ESM-LR",
-    "MOHC-HadGEM2-ES"
-]
+driving_model_id = list(cordex_eur11_cat.df["driving_model_id"].unique())
 
-experiment = ["rcp85", "rcp45", "historical"]
+experiment_id = list(cordex_eur11_cat.df["experiment_id"].unique())
 
-for exp, model in itertools.product(experiment, driving_model_id):
+for exp, model in itertools.product(experiment_id, driving_model_id):
     cordex_eur11 = cordex_eur11_cat.search(
         experiment_id=exp,
         driving_model_id=model
@@ -63,17 +58,28 @@ for exp, model in itertools.product(experiment, driving_model_id):
     # reassign time_bnds
     data.coords["time_bnds"] = data_time_bnds
 
+    # calculate photosynthetically active radiation (PAR)
+    # Papaioannou et al. (1993) - irradiance ratio
+    data = data.assign(par=(data["rsds"] + data["rsus"]) * 0.473)
+
+    # drop original radiation data
+    data = data.drop_vars(["rsds", "rsus"])
+
+    # convert variable units and assign attributes
     for v in data.data_vars:
         var_attrs = data[v].attrs  # extract attributes
         if v == "tas":
             var_attrs["units"] = "°C"  # convert K to deg C
             data[v] = data[v] - 273.15
-        elif v == "rsds":
+        elif v == "par":
             # convert W m-2 to MJ m-2 day-1
             # Allen (1998) - FAO Irrigation and Drainage Paper No. 56 (p. 45)
             # (per second to per day; then convert to mega)
             var_attrs["units"] = "MJ m⁻² day⁻¹"
             data[v] = data[v] * (60 * 60 * 24 / 1e6)
+            var_attrs["long_name"] = (
+                "Surface Photosynthetically Active Radiation"
+            )
         elif v == "mrso":
             var_attrs["units"] = "mm day⁻¹"  # kg m-2 is the same as mm day-1
         elif v in ("pr", "evspsblpot"):
