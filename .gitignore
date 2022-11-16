@@ -11,6 +11,7 @@ raw/
 *.fuse_*
 *.geojson
 *.gpkg*
+*.grb*
 *.gz
 *.html
 *.nc
