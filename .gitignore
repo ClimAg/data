@@ -38,7 +38,7 @@ dkrz_cordex_disk.json
 soil/*.json
 
 !wget-esg*.sh
-!eurocordex/eurocordex_eur11_catalogue.csv
+!EURO-CORDEX/eurocordex_eur11_catalogue.csv
 !grasscheck.csv
 !holden_brereton_2004_regions.png
 !regions-polygons.gpkg
