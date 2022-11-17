@@ -12,10 +12,12 @@ import intake
 import xarray as xr
 import climag.plot_configs as cplt
 
-DATA_DIR_BASE = os.path.join("data", "eurocordex")
+DATA_DRIVE = "/run/media/nms/Elements"
+
+DATA_DIR_BASE = os.path.join(DATA_DRIVE, "EURO-CORDEX")
 
 # directory to store outputs
-DATA_DIR = os.path.join(DATA_DIR_BASE, "IE")
+DATA_DIR = os.path.join(DATA_DRIVE, "ClimAg", "EURO-CORDEX")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 # Ireland boundary
