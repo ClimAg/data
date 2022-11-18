@@ -4,6 +4,7 @@ raw/
 *.~lock.*
 *.*-shm
 *.*-wal
+*_ANALYSIS
 *.cpg
 *.csv
 *.dbf
