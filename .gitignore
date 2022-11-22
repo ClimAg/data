@@ -15,6 +15,7 @@ raw/
 *.grb*
 *.gz
 *.html
+*.idx
 *.nc
 *.ods
 *.pdf
