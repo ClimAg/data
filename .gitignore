@@ -9,6 +9,7 @@ raw/
 *.csv
 *.dbf
 *.doc
+*.docx
 *.fuse_*
 *.geojson
 *.gpkg*
@@ -16,6 +17,7 @@ raw/
 *.gz
 *.html
 *.idx
+*.ini
 *.nc
 *.ods
 *.pdf
