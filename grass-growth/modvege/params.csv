@@ -1,6 +1,6 @@
 NI,0.75
 WHC,200.0
-cutHeight,0.0
+cutHeight,0.05
 livestock_units,1173.0
 grazing_area,616.4
 W_GV,750.0
@@ -12,8 +12,8 @@ init_AGE_GR,2000.0
 init_AGE_DV,300.0
 init_AGE_DR,500.0
 WR,60.0
-ST1,400.0
-ST2,2250.0
+ST1,85.0
+ST2,2440.0
 minSEA,0.8
 maxSEA,1.2
 T0,4.0
