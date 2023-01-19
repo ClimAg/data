@@ -11,7 +11,6 @@ age_gv_init,100.0
 age_gr_init,2000.0
 age_dv_init,300.0
 age_dr_init,500.0
-wr_init,200.0
 st_1,85.0
 st_2,2440.0
 min_sea,0.8
