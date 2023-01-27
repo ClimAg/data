@@ -46,5 +46,6 @@ soil/*.json
 !grasscheck.csv
 !holden_brereton_2004_regions.png
 !regions-polygons.gpkg
-!grass-growth/modvege/params.csv
+!params.csv
 !grass10.csv
+!valentia.csv

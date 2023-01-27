@@ -18,7 +18,7 @@ NUTS (Nomenclature of territorial units for statistics)
 
 <https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts>
 
-## Climate model outputs
+## Climate model datasets
 
 ### [EURO-CORDEX](https://euro-cordex.net/)
 
@@ -93,7 +93,11 @@ EPA Research Programme 2014-2020, EPA Research Report,
 Johnstown Castle, Co. Wexford, Ireland, Environmental Protection Agency (EPA).
 [Online][Nolan]. (Accessed 23 June 2022).
 
-## Met data
+## Meteorological data
+
+### Valentia Observatory time series
+
+Sample data for testing grass growth model. The data is subset from [raw data][Valentia] downloaded from Met Éireann's servers.
 
 ### Met Éireann Reanalysis (MÉRA)
 
@@ -186,5 +190,6 @@ Scripts by N. M. Streethran are licensed under the [Apache-2.0 License][Apache].
 [Jacob]: https://doi.org/10.1007/s10113-013-0499-2
 [Nolan]: https://www.epa.ie/publications/research/climate-change/research-339-high-resolution-climate-projections-for-ireland--a-multi-model-ensemble-approach.php
 [QGIS]: https://www.qgis.org/
+[Valentia]: https://data.gov.ie/dataset/valentia-observatory-daily-data
 [Variables]: https://www.wdc-climate.de/ui/codes?type=IPCC_DDC_AR5
 [Wget]: https://www.gnu.org/software/wget/
