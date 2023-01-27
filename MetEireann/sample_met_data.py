@@ -64,7 +64,7 @@ val["T"] = val[["maxtp", "mintp"]].mean(axis=1)
 val["gr"] = val["glorad"].astype(float) / 100
 
 # %%
-# convert global radiation to PARLarry Bolger decd.PNG
+# convert global radiation to PAR
 # see Papaioannou et al. (1993)
 val["PAR_i"] = val["gr"] * 0.473
 
