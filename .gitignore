@@ -1,5 +1,6 @@
 archive/
 raw/
+temp/
 
 *.~lock.*
 *.*-shm
@@ -46,6 +47,9 @@ soil/*.json
 !grasscheck.csv
 !holden_brereton_2004_regions.png
 !regions-polygons.gpkg
-!params.csv
+
 !grass10.csv
+
 !valentia.csv
+!params.csv
+!NUTS_2021.gpkg

@@ -1,0 +1,2 @@
+Data downloaded on: 2023-01-28 22:58:12.416102+00:00
+Download URL: https://gisco-services.ec.europa.eu/distribution/v2/nuts/download/ref-nuts-2021-01m.shp.zip
