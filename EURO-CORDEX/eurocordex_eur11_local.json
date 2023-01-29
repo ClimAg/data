@@ -18,7 +18,7 @@
     ],
     "esmcat_version": "0.1.0",
     "id": "eurocordex_eur11",
-    "description": "This is an ESM collection for EURO-CORDEX data used in the ClimAg project. Data has been generated using the DKRZ intake-esm stores. Data is filtered for the EUR-11 CORDEX domain at the daily frequency, the historical (1976-2005) and future (rcp45, rcp85) (2041-2070) experiments, and the following variables: evspsblpot, mrso, pr, rsds, rsus, tas. The SMHI-RCA4 RCM and four GCMs (CNRM-CERFACS-CNRM-CM5, ICHEC-EC-EARTH, MPI-M-MPI-ESM-LR, MOHC-HadGEM2-ES) are the models used to generate these data. Last updated: 2022-11-17 14:53:45.165752+00:00.",
+    "description": "This is an ESM collection for EURO-CORDEX data used in the ClimAg project. Data has been generated using the DKRZ intake-esm stores. Data is filtered for the EUR-11 CORDEX domain at the daily frequency, the historical (1976-2005) and future (rcp45, rcp85) (2041-2070) experiments, and the following variables: evspsblpot, pr, rsds, tas. The SMHI-RCA4 RCM and four GCMs (CNRM-CERFACS-CNRM-CM5, ICHEC-EC-EARTH, MPI-M-MPI-ESM-LR, MOHC-HadGEM2-ES) are the models used to generate these data. Last updated: 2023-01-29 18:04:47.362365+00:00.",
     "catalog_file": "https://raw.githubusercontent.com/ClimAg/data/main/eurocordex/eurocordex_eur11_catalogue.csv",
     "attributes": [
         {

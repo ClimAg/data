@@ -32,7 +32,7 @@ Data specifications:
   - rcp45, rcp85 (2041-2070)
 - Frequency: day
 - Domain: EUR-11 (12.5 km)
-- [Variables]: evspsblpot, mrso, pr, rsds, rsus, tas
+- [Variables]: evspsblpot, pr, rsds, tas
 - [ESGF] node: [NSC LIU](https://nsc.liu.se/)
 - Driving models (and ensemble):
   - MPI-M-MPI-ESM-LR (r1i1p1)
@@ -79,7 +79,7 @@ Data specifications:
   - historical (1976-2005)
   - rcp45, rcp85 (2041-2070)
 - Frequency: day
-- [Variables]: evspsblpot, mrso, pr, tas, par
+- [Variables]: evspsblpot, pr, tas, par / rsds
 - Driving models (and ensemble):
   - MPI-M-MPI-ESM-LR (r1i1p1)
   - CNRM-CERFACS-CNRM-CM5 (r1i1p1)

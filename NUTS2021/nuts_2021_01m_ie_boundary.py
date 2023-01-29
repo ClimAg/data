@@ -1,6 +1,6 @@
 """
-NUTS (Nomenclature of territorial units for statistics)
-<https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts>
+NUTS (Nomenclature of territorial units for statistics) 2021 boundaries
+for the Island of Ireland
 """
 
 # import libraries
@@ -82,11 +82,7 @@ ie = ie.assign(DESCRIPTION=DESCRIPTION)
 
 ie.to_file(GPKG_BOUNDARY, layer="NUTS_RG_01M_2021_4326_IE")
 
-# Island of Ireland in Irish transverse mercator
-# Useful for plotting
-# EPSG:2157
-# See <https://www.gov.uk/government/publications/uk-geospatial-data-standards-register/national-geospatial-data-standards-register#standards-for-coordinate-reference-systems>
-
+# Island of Ireland in Irish Transverse Mercator, EPSG:2157
 ie.to_crs(2157, inplace=True)
 
 ie.to_file(GPKG_BOUNDARY, layer="NUTS_RG_01M_2021_2157_IE")

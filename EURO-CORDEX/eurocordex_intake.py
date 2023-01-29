@@ -13,15 +13,12 @@ import json
 import os
 from datetime import datetime, timezone
 import intake
-from climag.download_data import download_data
+import pooch
 
-DATA_DRIVE = "/run/media/nms/Elements"
-
+DATA_DRIVE = "data"
 DATA_DIR_BASE = os.path.join(DATA_DRIVE, "EURO-CORDEX")
-
 os.makedirs(DATA_DIR_BASE, exist_ok=True)
 
-# intake catalogue
 timerange = [
     "19760101-19801231",
     "19810101-19851231",
@@ -40,7 +37,7 @@ timerange = [
 # add additional time ranges for the MOHC datasets, which use a 360-day year
 timerange = timerange + [t.replace("1231", "1230") for t in timerange]
 
-variables = ["evspsblpot", "mrso", "pr", "rsds", "rsus", "tas"]
+variables = ["evspsblpot", "pr", "rsds", "tas"]
 
 driving_model_id = [
     "CNRM-CERFACS-CNRM-CM5",
@@ -50,7 +47,6 @@ driving_model_id = [
 ]
 
 # create local catalogue
-
 dkrz_cat = intake.open_catalog(["https://dkrz.de/s/intake"])
 
 server = dkrz_cat._entries["dkrz_cordex_disk"]._open_args["esmcol_obj"]
@@ -60,8 +56,25 @@ dkrz_cordex = intake.open_esm_datastore(
     read_csv_kwargs={"dtype": {"time_min": "string", "time_max": "string"}}
 )
 
-# download JSON catalogue from DKRZ's GitLab
-download_data(server=server, dl_dir=DATA_DIR_BASE)
+# download data if necessary
+FILE_NAME = "dkrz_cordex_disk.json"
+KNOWN_HASH = None
+if not os.path.isfile(os.path.join(DATA_DIR_BASE, FILE_NAME)):
+    pooch.retrieve(
+        url=server,
+        known_hash=KNOWN_HASH,
+        fname=FILE_NAME,
+        path=DATA_DIR_BASE
+    )
+
+    with open(
+        os.path.join(DATA_DIR_BASE, f"{FILE_NAME[:-5]}.txt"),
+        "w", encoding="utf-8"
+    ) as outfile:
+        outfile.write(
+            f"Data downloaded on: {datetime.now(tz=timezone.utc)}\n"
+            f"Download URL: {server}"
+        )
 
 # keep data for the relevant variables and time ranges
 query = dict(
@@ -146,6 +159,7 @@ cordex_eur11_cat["description"] = (
     str(datetime.now(tz=timezone.utc)) + "."
 )
 
+# save the modified JSON file
 JSON_FILE_PATH = os.path.join(DATA_DIR_BASE, "eurocordex_eur11_local.json")
 
 with open(JSON_FILE_PATH, "w", encoding="utf-8") as json_file:

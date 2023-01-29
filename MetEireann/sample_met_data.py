@@ -17,7 +17,7 @@ KNOWN_HASH = None
 os.makedirs(SUB_DIR, exist_ok=True)
 FILE_NAME = "dly2275.csv"
 
-# download data if it doesn't exist
+# download data if necessary
 if not os.path.isfile(os.path.join(SUB_DIR, FILE_NAME)):
     pooch.retrieve(
         url=URL,

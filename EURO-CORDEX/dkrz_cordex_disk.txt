@@ -1,0 +1,2 @@
+Data downloaded on: 2023-01-29 18:02:00.307085+00:00
+Download URL: https://gitlab.dkrz.de/data-infrastructure-services/intake-esm/-/raw/master/esm-collections/cloud-access/dkrz_cordex_disk.json
