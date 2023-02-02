@@ -11,7 +11,7 @@ import geopandas as gpd
 import pooch
 
 # base data download directory
-DATA_DRIVE = "data"
+DATA_DRIVE = os.path.join("data", "boundaries")
 SUB_DIR = os.path.join(DATA_DRIVE, "NUTS2021")
 os.makedirs(SUB_DIR, exist_ok=True)
 
@@ -56,7 +56,9 @@ except BadZipFile:
     print("There were issues with the file", DATA_FILE)
 
 # NUTS1
-DATA_FILE = os.path.join(DATA_DIR_TEMP, "NUTS_RG_01M_2021_4326_LEVL_1.shp.zip")
+DATA_FILE = os.path.join(
+    DATA_DIR_TEMP, "NUTS_RG_01M_2021_4326_LEVL_1.shp.zip"
+)
 
 ie = gpd.read_file(f"zip://{DATA_FILE}!NUTS_RG_01M_2021_4326_LEVL_1.shp")
 
