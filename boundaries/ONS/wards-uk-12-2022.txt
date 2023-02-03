@@ -1,0 +1,2 @@
+Data downloaded on: 2023-02-02 21:10:43.294293+00:00
+Download URL: https://opendata.arcgis.com/api/v3/datasets/a2c204fedefe4120ac93f062c647bdcb_0/downloads/data?format=shp&spatialRefId=27700&where=1%3D1
