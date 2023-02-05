@@ -111,7 +111,8 @@ for exp, model in itertools.product(experiment_id, driving_model_id):
 
     # rename variables
     data = data.rename({
-        "tas": "T", "rsds": "RG", "pr": "PP", "evspsblpot": "PET", "par": "PAR"
+        "tas": "T", "rsds": "RG", "pr": "PP",
+        "evspsblpot": "PET", "par": "PAR"
     })
 
     # assign attributes for the data
