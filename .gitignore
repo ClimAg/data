@@ -25,6 +25,9 @@ temp/
 *.png
 *.points
 *.prj
+*.rdc
+*.RDC
+*.rst
 *.qgz
 *.qml
 *.sbn

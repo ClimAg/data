@@ -102,9 +102,7 @@ for dat in [TS_FILE_EC, TS_FILE_HRI]:
     )
 
     # merge with cell data
-    grid_cells.loc[dissolve.index, "stocking_rate"] = (
-        dissolve["stocking_rate"].values
-    )
+    grid_cells.loc[dissolve.index, "sr"] = dissolve["stocking_rate"].values
 
     # drop rows with missing values
     grid_cells.dropna(inplace=True)
@@ -112,11 +110,11 @@ for dat in [TS_FILE_EC, TS_FILE_HRI]:
     # export as GPKG layer
     if data.attrs["contact"] == "rossby.cordex@smhi.se":
         grid_cells.to_file(
-            os.path.join("data", "ModVege", "params_eurocordex.gpkg"),
-            layer="stocking_rate"
+            os.path.join("data", "ModVege", "params.gpkg"),
+            layer="eurocordex"
         )
     else:
         grid_cells.to_file(
-            os.path.join("data", "ModVege", "params_hiresireland.gpkg"),
-            layer="stocking_rate"
+            os.path.join("data", "ModVege", "params.gpkg"),
+            layer="hiresireland"
         )
