@@ -1,6 +1,17 @@
-"""ni_wards.py
+"""boundary_ons_ni_wards_12_2022.py
 
-ONS Geography
+Northern Ireland electoral wards data from ONS Geography
+
+Run the following in a Python interpreter in the project's directory and Conda
+environment:
+
+import os
+exec(
+    open(
+        os.path.join("scripts", "data", "boundary_ons_ni_wards_12_2022.py"),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 import os
@@ -42,14 +53,14 @@ data = gpd.read_file(f"zip://{DATA_FILE}!WD_DEC_2022_UK_BFC.shp")
 data = data[data["WD22CD"].str.contains("N")]
 
 data.to_file(
-    os.path.join(SUB_DIR, "ons_geography.gpkg"),
-    layer="ni_wards_12_2022_27700"
+    os.path.join("data", "boundaries", "boundaries.gpkg"),
+    layer="ONS_NI_wards_12_2022_27700"
 )
 
 # reproject to Irish Transverse Mercator
 data.to_crs(2157, inplace=True)
 
 data.to_file(
-    os.path.join(SUB_DIR, "ons_geography.gpkg"),
-    layer="ni_wards_12_2022_2157"
+    os.path.join("data", "boundaries", "boundaries.gpkg"),
+    layer="ONS_NI_wards_12_2022_2157"
 )

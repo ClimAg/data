@@ -1,6 +1,16 @@
-"""electoral_divisions.py
+"""boundary_osi_ie_electoral_divisions_2019.py
 
-OSi National Statutory Boundaries
+OSi National Statutory Boundaries - electoral divisions
+
+import os
+exec(
+    open(
+        os.path.join(
+            "scripts", "data", "boundary_osi_ie_electoral_divisions_2019.py"
+        ),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 import os
@@ -44,5 +54,5 @@ data = gpd.read_file(
 
 data.to_file(
     os.path.join(SUB_DIR, "osi_national_statutory_boundaries.gpkg"),
-    layer="electoral-divisions-2019"
+    layer="OSi_IE_electoral_divisions_2019"
 )
