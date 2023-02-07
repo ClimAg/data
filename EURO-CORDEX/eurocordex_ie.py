@@ -2,8 +2,16 @@
 
 Subset EURO-CORDEX data for the Island of Ireland
 
-Run the following in a Python interpreter:
-exec(open("data/EURO-CORDEX/eurocordex_ie.py").read())
+Run the following in a Python interpreter in the project's directory and Conda
+environment:
+
+import os
+exec(
+    open(
+        os.path.join("data", "EURO-CORDEX", "eurocordex_ie.py"),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 # import libraries
@@ -47,9 +55,11 @@ for exp, model in itertools.product(experiment_id, driving_model_id):
 
     data = xr.open_mfdataset(
         list(cordex_eur11.df["uri"]),
-        chunks="auto",
+        # chunks="auto",
         decode_coords="all"
     )
+    # disable auto-rechunking; may cause NotImplementedError with object dtype
+    # where it will not be able to estimate the size in bytes of object data
 
     # copy time_bnds coordinates
     data_time_bnds = data.coords["time_bnds"]

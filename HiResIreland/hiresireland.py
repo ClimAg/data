@@ -1,6 +1,17 @@
 """hiresireland.py
 
 Subset HiResIreland data for the Island of Ireland
+
+Run the following in a Python interpreter in the project's directory and Conda
+environment:
+
+import os
+exec(
+    open(
+        os.path.join("data", "HiResIreland", "hiresireland.py"),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 # import libraries
@@ -36,9 +47,11 @@ for exp, model in itertools.product(
                 "*mean_T_2M*.nc", "*ASOB_S*.nc", "*ET*.nc", "*TOT_PREC*.nc"
             ]
         ))),
-        chunks="auto",
+        # chunks="auto",
         decode_coords="all"
     )
+    # disable auto-rechunking; may cause NotImplementedError with object dtype
+    # where it will not be able to estimate the size in bytes of object data
 
     # copy time_bnds
     data_time_bnds = data.coords["time_bnds"]
