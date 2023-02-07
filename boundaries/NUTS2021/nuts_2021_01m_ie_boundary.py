@@ -1,6 +1,17 @@
 """
 NUTS (Nomenclature of territorial units for statistics) 2021 boundaries
 for the Island of Ireland
+
+Run the following in a Python interpreter in the project's directory and Conda
+environment:
+
+import os
+exec(
+    open(
+        os.path.join("scripts", "data", "nuts_2021_01m_ie_boundary.py"),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 # import libraries
@@ -11,8 +22,7 @@ import geopandas as gpd
 import pooch
 
 # base data download directory
-DATA_DRIVE = os.path.join("data", "boundaries")
-SUB_DIR = os.path.join(DATA_DRIVE, "NUTS2021")
+SUB_DIR = os.path.join("data", "boundaries", "NUTS2021")
 os.makedirs(SUB_DIR, exist_ok=True)
 
 URL = (
@@ -23,7 +33,7 @@ KNOWN_HASH = None
 FILE_NAME = "ref-nuts-2021-01m.shp.zip"
 
 # file name for the GeoPackage where the boundary vector layers will be saved
-GPKG_BOUNDARY = os.path.join(SUB_DIR, "NUTS_2021.gpkg")
+GPKG_BOUNDARY = os.path.join("data", "boundaries", "boundaries.gpkg")
 
 DATA_DIR_TEMP = os.path.join(SUB_DIR, "temp")
 
