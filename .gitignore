@@ -41,18 +41,20 @@ temp/
 *.xml
 *.zip
 
-wget-*.sh
 dkrz_cordex_disk.json
 soil/*.json
 
+wget-*.sh
 !wget-esg*.sh
+
 !EURO-CORDEX/eurocordex_eur11_catalogue.csv
 !grasscheck.csv
-!holden_brereton_2004_regions.png
-!regions-polygons.gpkg
-
 !grass10.csv
-
 !valentia.csv
 !params.csv
-!NUTS_2021.gpkg
+
+!holden_brereton_2004_regions.png
+
+!regions-polygons.gpkg
+
+*FC3hr

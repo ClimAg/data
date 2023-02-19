@@ -15,17 +15,18 @@ from datetime import datetime, timezone
 import intake
 import pooch
 
-DATA_DRIVE = "data"
-DATA_DIR_BASE = os.path.join(DATA_DRIVE, "EURO-CORDEX")
+DATA_DIR_BASE = os.path.join("data", "EURO-CORDEX")
 os.makedirs(DATA_DIR_BASE, exist_ok=True)
 
 timerange = [
+    "19710101-19751231",
     "19760101-19801231",
     "19810101-19851231",
     "19860101-19901231",
     "19910101-19951231",
     "19960101-20001231",
     "20010101-20051231",
+    "20360101-20401231",
     "20410101-20451231",
     "20460101-20501231",
     "20510101-20551231",
@@ -37,7 +38,7 @@ timerange = [
 # add additional time ranges for the MOHC datasets, which use a 360-day year
 timerange = timerange + [t.replace("1231", "1230") for t in timerange]
 
-variables = ["evspsblpot", "pr", "rsds", "tas"]
+variables = ["evspsblpot", "pr", "rsds", "rsus", "tas"]
 
 driving_model_id = [
     "CNRM-CERFACS-CNRM-CM5",
