@@ -18,8 +18,9 @@ do awk '
 !/20310101/ &&
 !/20710101/ && !/20760101/ && !/20810101/ && !/20860101/ && !/20910101/ &&
 !/20960101/
-' ${filename} > wget-${node}.sh &&
-sed -i 's/egrep/grep -E/g' wget-${node}.sh &&
+' ${filename} > wget-${node}.sh
+sed -i 's/egrep/grep -E/g' wget-${node}.sh
+sed -i 's/[ \t]*$//' wget-${node}.sh
 awk -v timestamp="$(date)" '
 NR==5{ print "\
 # NOTE: this file has been modified to remove data files that do not\
@@ -28,6 +29,6 @@ NR==5{ print "\
 \n# Last updated by N. M. Streethran - " timestamp ".\
 \n#" }1
 ' wget-${node}.sh > temp.sh
-mv temp.sh wget-${node}.sh;
-done;
+mv temp.sh wget-${node}.sh
+done
 done
