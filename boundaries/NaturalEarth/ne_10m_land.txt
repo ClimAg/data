@@ -1,0 +1,2 @@
+Data downloaded on: 2023-03-10 12:08:19.706106+00:00
+Download URL: https://naciscdn.org/naturalearth/10m/physical/ne_10m_land.zip
