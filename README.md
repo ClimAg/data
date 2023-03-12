@@ -107,15 +107,13 @@ Variables:
   - 2 m temperature [K] 11_105_2_0 (also to derive ET - vapour pressure)
   - Surface pressure [Pa] 1_105_0_0 (to derive ET - psychrometric constant)
   - 2 m relative humidity [%] 52_105_2_0 (to derive ET - vapour pressure)
+  - u-component of 10 m wind [m s⁻¹] 33_105_10_0 (to derive ET)
 
 - Accumulated (time-range indicator equal to 4) parameters produced by the atmospheric model available at or near the surface. All accumulations are initiated at the start of each forecast and are valid at the forecast step indicated in the data.
   - Total precipitation [kg m⁻²] 61_105_0_4
   - Global irradiance [J m⁻²] 117_105_0_4 (to derive PAR)
   - Net shortwave irradiance [J m⁻²] 111_105_0_4 (to derive ET - net radiation)
   - Net longwave irradiance [J m⁻²] 112_105_0_4 (to derive ET - net radiation)
-
-- Parameters produced by the surface model available at or below the ground. For soil moisture, level 800 is used for the surface, 801 for root level and 802 for deep soil.
-  - Soil moisture content [kg m⁻³] 86_105_801_0
 
 - Parameters that are valid over a specified period of time (time-range indicator equal to 2) produced by the atmospheric model at or near the surface. All such parameters are valid for the previous forecast hour; e.g. the maximum temperature at forecast hour 24 is the maximum temperature between hours 23 and 24. These parameters are reset each hour by the forecast model.
   - Maximum temperature [K] 15_105_2_2 (to derive ET)
