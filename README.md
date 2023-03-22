@@ -101,27 +101,30 @@ Sample data for testing grass growth model. The data is subset from [raw data][V
 
 ### Met Éireann Reanalysis (MÉRA)
 
-Variables:
+Variable                  | Identifier   | Unit
+--                        | --           | --
+Surface pressure*         |   1 105  0 0 | Pa
+2 m temperature*          |  11 105  2 0 | K
+Maximum temperature*      |  15 105  2 2 | K
+Minimum temperature*      |  16 105  2 2 | K
+u-component of 10 m wind* |  33 105 10 0 | m s⁻¹
+2 m relative humidity*    |  52 105  2 0 | %
+Total precipitation       |  61 105  0 4 | kg m⁻²
+Net shortwave irradiance* | 111 105  0 4 | J m⁻²
+Net longwave irradiance*  | 112 105  0 4 | J m⁻²
+Global irradiance         | 117 105  0 4 | J m⁻²
+
+Variables marked with an \* are used to derive evapotranspiration using the FAO Penman-Monteith equation.
+
+Variable types:
 
 - Instantaneous (time-range indicator equal to 0) parameters produced by the atmospheric model available at or near the surface.
-  - 2 m temperature [K] 11_105_2_0 (also to derive ET - vapour pressure)
-  - Surface pressure [Pa] 1_105_0_0 (to derive ET - psychrometric constant)
-  - 2 m relative humidity [%] 52_105_2_0 (to derive ET - vapour pressure)
-  - u-component of 10 m wind [m s⁻¹] 33_105_10_0 (to derive ET)
-
 - Accumulated (time-range indicator equal to 4) parameters produced by the atmospheric model available at or near the surface. All accumulations are initiated at the start of each forecast and are valid at the forecast step indicated in the data.
-  - Total precipitation [kg m⁻²] 61_105_0_4
-  - Global irradiance [J m⁻²] 117_105_0_4 (to derive PAR)
-  - Net shortwave irradiance [J m⁻²] 111_105_0_4 (to derive ET - net radiation)
-  - Net longwave irradiance [J m⁻²] 112_105_0_4 (to derive ET - net radiation)
-
 - Parameters that are valid over a specified period of time (time-range indicator equal to 2) produced by the atmospheric model at or near the surface. All such parameters are valid for the previous forecast hour; e.g. the maximum temperature at forecast hour 24 is the maximum temperature between hours 23 and 24. These parameters are reset each hour by the forecast model.
-  - Maximum temperature [K] 15_105_2_2 (to derive ET)
-  - Minimum temperature [K] 16_105_2_2 (to derive ET)
 
-ET derived using FAO Penman-Monteith equation
+© 2019 Met Éireann
 
-Whelan, E., Hanley, J. and Gleeson, E. (2017). The MÉRA Data Archive, Technical Note, Dublin, Ireland, Met Éireann. [Online]. Available at <https://hdl.handle.net/2262/81711> (Accessed 15 November 2022).
+Whelan, E., Hanley, J., and Gleeson, E. (2017). The MÉRA Data Archive, Technical Note, Dublin, Ireland, Met Éireann. [Online]. Available at <https://hdl.handle.net/2262/81711> (Accessed 15 November 2022).
 
 ## Grass growth
 
@@ -137,7 +140,7 @@ Frequency is weekly.
 
 © 2017-2022 Agrisearch
 
-Huson, K. M., Lively, F. O., Aubry, A., Takahashi, T., Gordon, A. and McDonnell, D. A. (2020).
+Huson, K. M., Lively, F. O., Aubry, A., Takahashi, T., Gordon, A., and McDonnell, D. A. (2020).
 'GrassCheck: monitoring grass growth and maximizing grass utilisation on UK farms',
 in Virkajärvi, P. et al. (eds),
 *Meeting the future demands for grassland production*,
@@ -148,7 +151,7 @@ vol. 25, pp. 716–718. [Online][Huson]. (Accessed 13 September 2022).
 
 © 2013-2022 Teagasc
 
-Hanrahan, L., Geoghegan, A., O'Donovan, M., Griffith, V., Ruelle, E., Wallace, M. and Shalloo, L. (2017).
+Hanrahan, L., Geoghegan, A., O'Donovan, M., Griffith, V., Ruelle, E., Wallace, M., and Shalloo, L. (2017).
 'PastureBase Ireland: A grassland decision support system and national database',
 *Computers and Electronics in Agriculture*, vol. 136, pp. 193–201.
 DOI: [10.1016/j.compag.2017.01.029][Hanrahan].
