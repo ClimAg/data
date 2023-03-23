@@ -1,0 +1,2 @@
+Data downloaded on: 2023-03-23 11:53:39.413551+00:00
+Download URL: https://cli.fusio.net/cli/climate_data/webdata/dly575.csv

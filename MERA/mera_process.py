@@ -10,6 +10,7 @@ import bz2
 import glob
 import os
 import shutil
+import sys
 from datetime import datetime, timezone
 from itertools import chain
 import geopandas as gpd
@@ -98,3 +99,5 @@ for var in var_dirs:
         os.system(f"rm -r {os.path.join(TEMP_DIR, '*')}")
 
     print(f"{var} done!", datetime.now(tz=timezone.utc))
+
+sys.exit()

@@ -225,7 +225,7 @@ DOI: [10.1016/j.agrformet.2003.09.010][Holden].
 
 A screenshot of the map was taken, then georeferenced in [QGIS]/[GDAL] using the steps detailed in `holden_brereton_2004_regions.sh`.
 
-# List of references
+## List of references
 
 Available on Zotero: <https://www.zotero.org/groups/4706660/climag/collections/N6IJMX95>
 
