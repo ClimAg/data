@@ -89,10 +89,11 @@ Johnstown Castle, Co. Wexford, Ireland, Environmental Protection Agency (EPA).
 Variable                  | Identifier     | Unit
 --                        | --:            | --
 Surface pressure*         | `  1 105  0 0` | Pa
-2 m temperature*          | ` 11 105  2 0` | K
+2 m temperature           | ` 11 105  2 0` | K
 Maximum temperature*      | ` 15 105  2 2` | K
 Minimum temperature*      | ` 16 105  2 2` | K
 u-component of 10 m wind* | ` 33 105 10 0` | m s⁻¹
+v-component of 10 m wind* | ` 34 105 10 0` | m s⁻¹
 2 m relative humidity*    | ` 52 105  2 0` | %
 Total precipitation       | ` 61 105  0 4` | kg m⁻²
 Net shortwave irradiance* | `111 105  0 4` | J m⁻²
