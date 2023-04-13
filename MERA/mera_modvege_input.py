@@ -7,12 +7,15 @@ Met Éireann Reanalysis - generate ModVege input data
 import glob
 import os
 import sys
+from datetime import datetime, timezone
 import pandas as pd
 import xarray as xr
 from data.MERA.mera_data_et import mera_calculate_et
 
 
 def mera_modvege_input(years, spinup=False):
+
+    print("Compiling ModVege input data...", datetime.now(tz=timezone.utc))
 
     mera_calculate_et(years)
 
@@ -32,7 +35,9 @@ def mera_modvege_input(years, spinup=False):
 
     for var in var_list:
         ds[var] = xr.open_mfdataset(
-            glob.glob(os.path.join(DATA_DIR, f"MERA_{years[0]}_{years[1]}_{var}_day.nc")),
+            glob.glob(os.path.join(
+                DATA_DIR, f"MERA_{years[0]}_{years[1]}_{var}_day.nc"
+            )),
             chunks="auto",
             decode_coords="all",
         )
@@ -81,7 +86,9 @@ def mera_modvege_input(years, spinup=False):
 
         # copy first year data
         ds_interp = ds.interp(
-            time=pd.date_range(f"{years[0] - 1}-01-01", f"{years[0] - 1}-12-31", freq="D"),
+            time=pd.date_range(
+                f"{years[0] - 1}-01-01", f"{years[0] - 1}-12-31", freq="D"
+            ),
             kwargs={"fill_value": None},
         )
 
@@ -93,7 +100,9 @@ def mera_modvege_input(years, spinup=False):
         )
 
         # shift first year of the main data to the spin-up year
-        ds_interp = ds_interp.shift(time=-ds_interp.sel(time=str(years[0])).dims["time"])
+        ds_interp = ds_interp.shift(
+            time=-ds_interp.sel(time=str(years[0])).dims["time"]
+        )
 
         # keep only spin-up year
         ds_interp = ds_interp.sel(time=str(years[0]))
@@ -105,8 +114,13 @@ def mera_modvege_input(years, spinup=False):
 
     # ## Save data
 
-    ds.to_netcdf(os.path.join("data", "MERA", f"{ds.attrs['dataset']}_{years[0]}_{years[1]}.nc"))
+    ds.to_netcdf(os.path.join(
+        "data", "MERA", f"{ds.attrs['dataset']}_{years[0]}_{years[1]}.nc"
+    ))
+
+    print("Done!", datetime.now(tz=timezone.utc))
 
     sys.exit()
+
 
 mera_modvege_input(years=(2012, 2019))

@@ -23,8 +23,6 @@ def mera_process(years):
     Process MERA data for the given years
     """
 
-    # print("Started MÉRA data processing...", datetime.now(tz=timezone.utc))
-
     # Ireland boundary (derived from NUTS 2021)
     GPKG_BOUNDARY = os.path.join("data", "boundaries", "boundaries.gpkg")
     ie = gpd.read_file(GPKG_BOUNDARY, layer="NUTS_RG_01M_2021_2157_IE")

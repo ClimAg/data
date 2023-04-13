@@ -8,6 +8,7 @@ Derive evapotranspiration using the FAO Penman-Monteith equation
 import glob
 import os
 import sys
+from datetime import datetime, timezone
 import numpy as np
 import xarray as xr
 from data.MERA.mera_resample import mera_resample
@@ -37,7 +38,9 @@ def mera_calculate_et(years):
 
     for var in var_dirs:
         ds[var] = xr.open_mfdataset(
-            glob.glob(os.path.join(DATA_DIR, f"MERA_{years[0]}_{years[1]}_{var}_day.nc")),
+            glob.glob(os.path.join(
+                DATA_DIR, f"MERA_{years[0]}_{years[1]}_{var}_day.nc"
+            )),
             chunks="auto",
             decode_coords="all",
         )
@@ -62,10 +65,11 @@ def mera_calculate_et(years):
     # respectively, the maximum and minimum air temperature observed during the
     # 24-hour period, beginning at midnight.
     #
-    # The mean daily air temperature is only employed in the FAO Penman-Monteith
-    # equation to calculate the slope of the saturation vapour pressure curves
-    # and the impact of mean air density as the effect of temperature variations
-    # on the value of the climatic parameter is small in these cases.
+    # The mean daily air temperature is only employed in the FAO
+    # Penman-Monteith equation to calculate the slope of the saturation vapour
+    # pressure curves and the impact of mean air density as the effect of
+    # temperature variations on the value of the climatic parameter is small
+    # in these cases.
     #
     # For standardisation, the mean temperature for 24-hour periods is defined
     # as the mean of the daily maximum and minimum temperatures rather than as
@@ -127,10 +131,10 @@ def mera_calculate_et(years):
     # $$e_s = \frac{e^o(T_{max}) + e^o(T_{min})}{2}$$
     #
     # - $e_s$: mean saturation vapour pressure [kPa]
-    # - $e^o(T_{max})$: saturation vapour pressure at the maximum air temperature
-    #   [kPa]
-    # - $e^o(T_{min})$: saturation vapour pressure at the minimum air temperature
-    #   [kPa]
+    # - $e^o(T_{max})$: saturation vapour pressure at the maximum air
+    #   temperature [kPa]
+    # - $e^o(T_{min})$: saturation vapour pressure at the minimum air
+    #   temperature [kPa]
 
     e_s = xr.combine_by_coords(
         [ds["15_105_2_2"], ds["16_105_2_2"]], combine_attrs="drop_conflicts"
@@ -161,9 +165,9 @@ def mera_calculate_et(years):
     # - $Δ$: slope vapour pressure curve [kPa °C⁻¹]
     # - $T$: mean air temperature at 2 m height [°C]
     #
-    # In the FAO Penman-Monteith equation, where $∆$ occurs in the numerator and
-    # denominator, the slope of the vapour pressure curve is calculated using mean
-    # air temperature.
+    # In the FAO Penman-Monteith equation, where $∆$ occurs in the numerator
+    # and denominator, the slope of the vapour pressure curve is calculated
+    # using mean air temperature.
 
     delta = t_mean.copy()
 
@@ -250,7 +254,8 @@ def mera_calculate_et(years):
     #
     # Equation (19) in Allen et al. (1998), p. 39
     #
-    # $$e_a = \frac{RH_{mean}}{100} \times \frac{e^o(T_{max}) + e^o(T_{min})}{2}
+    # $$e_a = \frac{RH_{mean}}{100} \times
+    #   \frac{e^o(T_{max}) + e^o(T_{min})}{2}
     #   = \frac{RH_{mean}}{100} \times e_s$$
     #
     # - $e_a$: actual vapour pressure [kPa]
@@ -273,7 +278,8 @@ def mera_calculate_et(years):
     #
     # Equation (6) in Allen et al. (1998), p. 24
     #
-    # $$ET_o = \frac{0.408 \times Δ \times (R_n - G) + γ \times \frac{900}{T + 273}
+    # $$ET_o = \frac{0.408 \times Δ \times (R_n - G) +
+    #   γ \times \frac{900}{T + 273}
     #   \times w_2 \times (e_s - e_a)}{Δ + γ \times (1 + 0.34 \times w_2)}$$
     #
     # - $ET_o$: reference evapotranspiration [mm day⁻¹]
@@ -314,9 +320,15 @@ def mera_calculate_et(years):
 
     eto["PET"].attrs["units"] = "mm day⁻¹"
     eto["PET"].attrs["long_name"] = "Reference evapotranspiration"
-    eto = eto.drop_vars(["delta", "gamma", "e_a", "e_s", "r_n", "t_mean", "w_2"])
+    eto = eto.drop_vars([
+        "delta", "gamma", "e_a", "e_s", "r_n", "t_mean", "w_2"
+    ])
     eto.rio.write_crs(data_crs, inplace=True)
 
-    eto.to_netcdf(os.path.join(DATA_DIR, f"MERA_{years[0]}_{years[1]}_PET_day.nc"))
+    eto.to_netcdf(os.path.join(
+        DATA_DIR, f"MERA_{years[0]}_{years[1]}_PET_day.nc"
+    ))
+
+    print("ET calculation done!", datetime.now(tz=timezone.utc))
 
     sys.exit()

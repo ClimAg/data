@@ -19,8 +19,6 @@ import climag.plot_configs as cplt
 
 def mera_resample(years):
 
-    # print("Started MÉRA data processing...", datetime.now(tz=timezone.utc))
-
     mera_process(years)
 
     # directory of MÉRA netCDF files
