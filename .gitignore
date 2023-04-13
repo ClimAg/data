@@ -1,6 +1,7 @@
 archive/
 raw/
 temp/
+__pycache__/
 
 *.~lock.*
 *.*-shm
