@@ -6,9 +6,11 @@ Gridding based on
 <https://james-brennan.github.io/posts/fast_gridding_geopandas/>
 """
 
+import itertools
+
 # import libraries
 import os
-import itertools
+
 import geopandas as gpd
 import numpy as np
 import shapely
@@ -16,9 +18,11 @@ import xarray as xr
 
 # ## Open some gridded climate data
 TS_FILE_EC = os.path.join(
-    "data", "EURO-CORDEX", "IE",
+    "data",
+    "EURO-CORDEX",
+    "IE",
     "IE_EUR-11_ICHEC-EC-EARTH_rcp85_r12i1p1_SMHI-RCA4_v1_day_"
-    "20410101-20701231.nc"
+    "20410101-20701231.nc",
 )
 
 TS_FILE_HRI = os.path.join(
@@ -51,15 +55,10 @@ for dat in [TS_FILE_EC, TS_FILE_HRI]:
     grid_cells = gpd.GeoDataFrame(grid_cells, columns=["geometry"], crs=crs)
 
     # ## Drop grid cells without climate data
-    grid_centroids = {
-        "wkt": [],
-        "rlon": [],
-        "rlat": []
-    }
+    grid_centroids = {"wkt": [], "rlon": [], "rlat": []}
 
     for rlon, rlat in itertools.product(
-        range(len(data.coords["rlon"])),
-        range(len(data.coords["rlat"]))
+        range(len(data.coords["rlon"])), range(len(data.coords["rlat"]))
     ):
         data__ = data.isel(rlon=rlon, rlat=rlat)
 
@@ -74,7 +73,7 @@ for dat in [TS_FILE_EC, TS_FILE_HRI]:
 
     grid_centroids = gpd.GeoDataFrame(
         grid_centroids,
-        geometry=gpd.GeoSeries.from_wkt(grid_centroids["wkt"], crs=crs)
+        geometry=gpd.GeoSeries.from_wkt(grid_centroids["wkt"], crs=crs),
     )
 
     grid_cells = gpd.sjoin(grid_cells, grid_centroids.to_crs(grid_cells.crs))
@@ -86,7 +85,7 @@ for dat in [TS_FILE_EC, TS_FILE_HRI]:
         os.path.join(
             "data", "agricultural_census", "agricultural_census.gpkg"
         ),
-        layer="stocking_rate"
+        layer="stocking_rate",
     )
 
     # ## Reproject cells to the CRS of the stocking rate data
@@ -110,11 +109,10 @@ for dat in [TS_FILE_EC, TS_FILE_HRI]:
     # export as GPKG layer
     if data.attrs["contact"] == "rossby.cordex@smhi.se":
         grid_cells.to_file(
-            os.path.join("data", "ModVege", "params.gpkg"),
-            layer="eurocordex"
+            os.path.join("data", "ModVege", "params.gpkg"), layer="eurocordex"
         )
     else:
         grid_cells.to_file(
             os.path.join("data", "ModVege", "params.gpkg"),
-            layer="hiresireland"
+            layer="hiresireland",
         )

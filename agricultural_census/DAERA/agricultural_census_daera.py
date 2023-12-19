@@ -5,6 +5,7 @@ Census of Agriculture
 
 import os
 from datetime import datetime, timezone
+
 import pandas as pd
 import pooch
 
@@ -23,10 +24,7 @@ os.makedirs(SUB_DIR, exist_ok=True)
 # download data if necessary
 if not os.path.isfile(os.path.join(SUB_DIR, FILE_NAME)):
     pooch.retrieve(
-        url=URL,
-        known_hash=KNOWN_HASH,
-        fname=FILE_NAME,
-        path=SUB_DIR
+        url=URL, known_hash=KNOWN_HASH, fname=FILE_NAME, path=SUB_DIR
     )
 
     with open(
@@ -40,11 +38,16 @@ if not os.path.isfile(os.path.join(SUB_DIR, FILE_NAME)):
 coa = pd.read_csv(DATA_FILE, encoding_errors="replace")
 
 # filter grass, cattle, and sheep data
-coa = coa[[
-    "Ward2014 Code", "Ward2014 Name", "Year",
-    "Total grass & rough grazing in hectares  ", "Total number of cattle  ",
-    "Total number of sheep  "
-]]
+coa = coa[
+    [
+        "Ward2014 Code",
+        "Ward2014 Name",
+        "Year",
+        "Total grass & rough grazing in hectares  ",
+        "Total number of cattle  ",
+        "Total number of sheep  ",
+    ]
+]
 
 # keep data for 2018
 coa = coa[coa["Year"] == 2018]
@@ -57,12 +60,10 @@ coa.rename(
         "Year": "year",
         "Total grass & rough grazing in hectares  ": "total_grass_hectares",
         "Total number of cattle  ": "total_cattle",
-        "Total number of sheep  ": "total_sheep"
+        "Total number of sheep  ": "total_sheep",
     },
-    inplace=True
+    inplace=True,
 )
 
 # save as a CSV file
-coa.to_csv(
-    os.path.join(SUB_DIR, "daera_agricultural_census.csv"), index=False
-)
+coa.to_csv(os.path.join(SUB_DIR, "daera_agricultural_census.csv"), index=False)

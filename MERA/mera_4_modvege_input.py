@@ -3,6 +3,17 @@
 Met Éireann Reanalysis - generate ModVege input data.
 
 This is script 4 out of 4 to be run.
+
+Run the following in a Python interpreter in the project's directory and Conda
+environment:
+
+import os
+exec(
+    open(
+        os.path.join("scripts", "data", "mera_4_modvege_input.py"),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 # import libraries
@@ -10,6 +21,7 @@ import glob
 import os
 import sys
 from datetime import datetime, timezone
+
 import pandas as pd
 import xarray as xr
 

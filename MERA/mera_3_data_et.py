@@ -2,6 +2,17 @@
 
 Derive evapotranspiration using the FAO Penman-Monteith equation.
 This is script 3 out of 4 to be run.
+
+Run the following in a Python interpreter in the project's directory and Conda
+environment:
+
+import os
+exec(
+    open(
+        os.path.join("scripts", "data", "mera_3_data_et.py"),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 # import libraries
@@ -9,6 +20,7 @@ import glob
 import os
 import sys
 from datetime import datetime, timezone
+
 import numpy as np
 import xarray as xr
 

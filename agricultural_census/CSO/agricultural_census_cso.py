@@ -5,6 +5,7 @@ Census of Agriculture
 
 import os
 from datetime import datetime, timezone
+
 import pandas as pd
 import pooch
 
@@ -23,10 +24,7 @@ os.makedirs(SUB_DIR, exist_ok=True)
 # download data if necessary
 if not os.path.isfile(os.path.join(SUB_DIR, FILE_NAME)):
     pooch.retrieve(
-        url=URL,
-        known_hash=KNOWN_HASH,
-        fname=FILE_NAME,
-        path=SUB_DIR
+        url=URL, known_hash=KNOWN_HASH, fname=FILE_NAME, path=SUB_DIR
     )
 
     with open(
@@ -48,17 +46,21 @@ coa = coa[coa["Electoral Division"] != "State"]
 # drop unnecessary columns
 coa.drop(
     columns=[
-        "STATISTIC", "Statistic Label", "TLIST(A1)",
-        "C02148V02965", "UNIT", "Census Year"
+        "STATISTIC",
+        "Statistic Label",
+        "TLIST(A1)",
+        "C02148V02965",
+        "UNIT",
+        "Census Year",
     ],
-    inplace=True
+    inplace=True,
 )
 
 # split cattle and sheep values into separate columns
 coa = pd.merge(
     coa[coa["Type of Livestock"] == "Total cattle"],
     coa[coa["Type of Livestock"] == "Total sheep"],
-    on=["C03904V04656", "Electoral Division"]
+    on=["C03904V04656", "Electoral Division"],
 )
 
 # rename columns
@@ -66,9 +68,9 @@ coa.rename(
     columns={
         "Electoral Division": "electoral_division",
         "VALUE_x": "total_cattle",
-        "VALUE_y": "total_sheep"
+        "VALUE_y": "total_sheep",
     },
-    inplace=True
+    inplace=True,
 )
 
 # drop unnecessary columns
@@ -89,10 +91,7 @@ os.makedirs(SUB_DIR, exist_ok=True)
 # download data if necessary
 if not os.path.isfile(os.path.join(SUB_DIR, FILE_NAME)):
     pooch.retrieve(
-        url=URL,
-        known_hash=KNOWN_HASH,
-        fname=FILE_NAME,
-        path=SUB_DIR
+        url=URL, known_hash=KNOWN_HASH, fname=FILE_NAME, path=SUB_DIR
     )
 
     with open(
@@ -115,9 +114,9 @@ land = land[land["Electoral Division"] != "State"]
 land.rename(
     columns={
         "Electoral Division": "electoral_division",
-        "VALUE": "all_grassland_hectares"
+        "VALUE": "all_grassland_hectares",
     },
-    inplace=True
+    inplace=True,
 )
 
 # keep only necessary columns

@@ -6,7 +6,9 @@ Download Ireland boundary data and save as layers in a GeoPackage file
 # import libraries
 import os
 from zipfile import BadZipFile, ZipFile
+
 import geopandas as gpd
+
 from climag.download_data import download_data
 
 # base data download directory
@@ -25,12 +27,7 @@ URL = (
     "osi::counties-osi-national-statutory-boundaries-2019.zip"
 )
 
-payload = {
-    "outSR": {
-        "latestWkid": "2157",
-        "wkid": "2157"
-    }
-}
+payload = {"outSR": {"latestWkid": "2157", "wkid": "2157"}}
 
 download_data(server=URL, dl_dir=SUB_DIR, params=payload)
 
@@ -55,12 +52,7 @@ URL = (
     "osni-open-data-largescale-boundaries-county-boundaries-.zip"
 )
 
-payload = {
-    "outSR": {
-        "latestWkid": "29902",
-        "wkid": "29900"
-    }
-}
+payload = {"outSR": {"latestWkid": "29902", "wkid": "29900"}}
 
 download_data(server=URL, dl_dir=SUB_DIR, params=payload)
 
@@ -94,7 +86,7 @@ contae = {
     "DOWN": "An Dún",
     "FERMANAGH": "Fear Manach",
     "DERRY": "Doire",
-    "TYRONE": "Tír Eoghain"
+    "TYRONE": "Tír Eoghain",
 }
 
 osni_counties["CONTAE"] = osni_counties["COUNTY"].map(contae)

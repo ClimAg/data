@@ -5,6 +5,17 @@ This is script 2 out of 4 to be run.
 This script also converts units of certain variables.
 
 https://confluence.ecmwf.int/pages/viewpage.action?pageId=197702790
+
+Run the following in a Python interpreter in the project's directory and Conda
+environment:
+
+import os
+exec(
+    open(
+        os.path.join("scripts", "data", "mera_2_resample.py"),
+        encoding="utf-8"
+    ).read()
+)
 """
 
 # import libraries
@@ -12,8 +23,10 @@ import glob
 import os
 import sys
 from datetime import datetime, timezone
+
 import geopandas as gpd
 import xarray as xr
+
 import climag.plot_configs as cplt
 
 print("Begin MÉRA data processing...", datetime.now(tz=timezone.utc))
@@ -26,28 +39,29 @@ OUT_DIR = os.path.join("/run/media/nms/MyPassport", "MERA", "netcdf_day")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # Ireland boundary
-GPKG_BOUNDARY = os.path.join("data", "boundaries", "boundaries.gpkg")
+GPKG_BOUNDARY = os.path.join("data", "boundaries", "boundaries_all.gpkg")
 ie = gpd.read_file(GPKG_BOUNDARY, layer="NUTS_RG_01M_2021_2157_IE")
 
 # list of folders containing variables
 var_dirs = [
-    "1_105_0_0",    # surface pressure
-    "11_105_2_0",   # 2 m temperature
-    "15_105_2_2",   # max temperature
-    "16_105_2_2",   # min temperature
+    "1_105_0_0",  # surface pressure
+    "11_105_2_0",  # 2 m temperature
+    "15_105_2_2",  # max temperature
+    "16_105_2_2",  # min temperature
     "33_105_10_0",  # u-component of 10 m wind
     "34_105_10_0",  # v-component of 10 m wind
-    "52_105_2_0",   # 2 m relative humidity
-    "61_105_0_4",   # total precipitation
+    "52_105_2_0",  # 2 m relative humidity
+    "61_105_0_4",  # total precipitation
     "111_105_0_4",  # net shortwave irradiance
     "112_105_0_4",  # net longwave irradiance
-    "117_105_0_4"   # global irradiance
+    "117_105_0_4",  # global irradiance
 ]
 
 for var in var_dirs:
     data = xr.open_mfdataset(
         glob.glob(os.path.join(DATA_DIR, f"{var}_FC3hr", f"*{var}_FC3hr.nc")),
-        chunks="auto", decode_coords="all"
+        chunks="auto",
+        decode_coords="all",
     )
 
     varname = list(data.data_vars)[0]
@@ -77,7 +91,8 @@ for var in var_dirs:
     if var == "61_105_0_4":
         data.rio.write_crs(data_crs, inplace=True)  # reassign CRS
         data = data.rio.clip(
-            ie.buffer(1).to_crs(cplt.projection_lambert_conformal), all_touched=True
+            ie.buffer(1).to_crs(cplt.projection_lambert_conformal),
+            all_touched=True,
         )
 
     # convert units

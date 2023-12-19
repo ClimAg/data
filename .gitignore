@@ -1,6 +1,7 @@
 archive/
 raw/
 temp/
+clc-2018/
 __pycache__/
 
 *.~lock.*

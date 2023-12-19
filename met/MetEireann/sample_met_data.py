@@ -7,6 +7,7 @@ Data used: Met Eireann daily data for Valentia Observatory, Co. Kerry
 
 import os
 from datetime import datetime, timezone
+
 import pandas as pd
 import pooch
 
@@ -20,10 +21,7 @@ FILE_NAME = "dly2275.csv"
 # download data if necessary
 if not os.path.isfile(os.path.join(SUB_DIR, FILE_NAME)):
     pooch.retrieve(
-        url=URL,
-        known_hash=KNOWN_HASH,
-        fname=FILE_NAME,
-        path=SUB_DIR
+        url=URL, known_hash=KNOWN_HASH, fname=FILE_NAME, path=SUB_DIR
     )
 
     with open(
