@@ -26,7 +26,7 @@ NR==5{ print "\
 # NOTE: this file has been modified to remove data files that do not\
 \n# correspond to the study time range, i.e. outside 1976-2005 and 2041-2070.\
 \n# Additionally, egrep has been replaced with grep -E.\
-\n# Last updated by N. M. Streethran - " timestamp ".\
+\n# Last updated by N. Streethran - " timestamp ".\
 \n#" }1
 ' wget-${node}.sh > temp.sh
 mv temp.sh wget-${node}.sh

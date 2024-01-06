@@ -232,7 +232,8 @@ Available on Zotero: <https://www.zotero.org/groups/4706660/climag/collections/N
 
 ## Licence
 
-Scripts by N. M. Streethran are licensed under the [Apache-2.0 License][Apache].
+Scripts by N. Streethran are licensed under the [Apache-2.0 License][Apache].
+Copyright 2022-2024.
 
 [Apache]: https://www.apache.org/licenses/LICENSE-2.0
 [DKRZ]: https://www.dkrz.de/

@@ -46,8 +46,8 @@ __pycache__/
 dkrz_cordex_disk.json
 soil/*.json
 
-wget-*.sh
-!wget-esg*.sh
+# wget-*.sh
+# !wget-esg*.sh
 
 !EURO-CORDEX/eurocordex_eur11_catalogue.csv
 !grasscheck.csv
