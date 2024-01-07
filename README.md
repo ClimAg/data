@@ -1,5 +1,7 @@
 # data
 
+[![Documentation Status](https://readthedocs.org/projects/climag/badge/?version=latest)](https://climag.readthedocs.io/en/latest/?badge=latest)
+
 ## Climate model datasets
 
 ### EURO-CORDEX
