@@ -7,7 +7,6 @@ Gridding based on
 """
 
 import itertools
-
 # import libraries
 import os
 
