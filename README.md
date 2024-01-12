@@ -1,4 +1,4 @@
-# data
+# Data for the ClimAg project
 
 [![Documentation Status](https://readthedocs.org/projects/climag/badge/?version=latest)](https://climag.readthedocs.io/?badge=latest)
 
