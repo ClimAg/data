@@ -1,4 +1,4 @@
-# data
+# Data for the ClimAg project
 
 [![Documentation Status](https://readthedocs.org/projects/climag/badge/?version=latest)](https://climag.readthedocs.io/?badge=latest)
 
@@ -235,7 +235,7 @@ Available on Zotero: <https://www.zotero.org/groups/4706660/climag/collections/N
 ## Licence
 
 Scripts by N. Streethran are licensed under the [Apache-2.0 License][Apache].
-Copyright 2022-2024.
+Copyright 2022-2025.
 
 [Apache]: https://www.apache.org/licenses/LICENSE-2.0
 [DKRZ]: https://www.dkrz.de/
