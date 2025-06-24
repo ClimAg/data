@@ -59,7 +59,7 @@ DOI: [10.1007/s10113-013-0499-2][Jacob].
 
 ### HiResIreland
 
-<https://epa.ie/pubs/reports/research/climate/researchreport339/>
+<https://www.epa.ie/publications/research/climate-change/research-339-high-resolution-climate-projections-for-ireland--a-multi-model-ensemble-approach.php>
 
 Data specifications:
 
@@ -245,7 +245,7 @@ Copyright 2022-2025.
 [Holden]: https://doi.org/10.1016/j.agrformet.2003.09.010
 [Huson]: https://www.europeangrassland.org/fileadmin/documents/Infos/Printed_Matter/Proceedings/EGF2020.pdf
 [Jacob]: https://doi.org/10.1007/s10113-013-0499-2
-[Nolan]: https://epa.ie/pubs/reports/research/climate/researchreport339/
+[Nolan]: https://www.epa.ie/publications/research/climate-change/research-339-high-resolution-climate-projections-for-ireland--a-multi-model-ensemble-approach.php
 [QGIS]: https://www.qgis.org/
 [Valentia]: https://data.gov.ie/dataset/valentia-observatory-daily-data
 [Variables]: https://www.wdc-climate.de/ui/codes?type=IPCC_DDC_AR5
